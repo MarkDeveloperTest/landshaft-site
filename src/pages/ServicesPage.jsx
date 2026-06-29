@@ -5,9 +5,94 @@ import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
 import { media, pageSeo, processSteps, services, siteMeta } from "../content/siteContent";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export function ServicesPage() {
   const seo = pageSeo.services;
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <>
+        <Meta
+          title={seo.title}
+          description={seo.description}
+          path="/services"
+          image={siteMeta.uk.ogImage}
+        />
+
+        <div className="mobile-page shell">
+          <section className="mobile-section">
+            <Reveal className="mobile-card mobile-card--hero" variant="scale">
+              <p className="mobile-kicker">Послуги</p>
+              <h1>Комплексний підхід до створення садів і просторів.</h1>
+              <p>
+                Комплексний підхід до створення садів і просторів, що поєднують
+                естетику, функціональність і довговічність.
+              </p>
+            </Reveal>
+            <Reveal className="mobile-hero__media" delay={60}>
+              <ResponsiveImage
+                asset={media.projectCourtyard}
+                imageClassName="media-frame"
+                priority
+                sizes="100vw"
+              />
+            </Reveal>
+          </section>
+
+          <section className="mobile-section">
+            <div className="mobile-card-grid">
+              {services.map((service, index) => (
+                <Reveal key={service.slug} className="mobile-card" delay={90 + index * 35}>
+                  <p className="mobile-kicker">{service.kicker}</p>
+                  <h2>{service.title}</h2>
+                  <p>{service.detail}</p>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          <section className="mobile-section">
+            <Reveal className="mobile-section__header" delay={180}>
+              <SectionHeading
+                title="Процес"
+                body="Чітка послідовність етапів і увага до деталей — від першої зустрічі до реалізації та підтримки."
+              />
+            </Reveal>
+
+            <div className="mobile-process-list">
+              {processSteps.map((step, index) => (
+                <Reveal
+                  key={step.number}
+                  className="mobile-process-item"
+                  delay={200 + index * 30}
+                >
+                  <span>{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          <section className="mobile-section">
+            <Reveal className="mobile-card mobile-card--contact" variant="scale" delay={260}>
+              <h2>Якщо вже є ділянка або перший запит, можна переходити до розмови.</h2>
+              <p>
+                Найкращий старт для проєкту — кілька фото ділянки, орієнтовні
+                побажання і розуміння бажаного масштабу робіт.
+              </p>
+              <Link className="button button--solid" to="/contact">
+                Перейти до контактів
+                <ArrowIcon className="icon icon--arrow" />
+              </Link>
+            </Reveal>
+          </section>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
