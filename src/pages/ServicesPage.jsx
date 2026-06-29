@@ -104,7 +104,7 @@ export function ServicesPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="service-page-hero">
+        <Reveal className="service-page-hero section-frame section-frame--hero">
           <div className="service-page-hero__copy">
             <h1>Послуги</h1>
             <p>
@@ -141,7 +141,7 @@ export function ServicesPage() {
       </section>
 
       <section className="section shell">
-        <Reveal>
+        <Reveal className="section-frame section-frame--compact">
           <SectionHeading
             title="Процес"
             body="Чітка послідовність етапів і увага до деталей — від першої зустрічі до реалізації та підтримки."
@@ -160,7 +160,7 @@ export function ServicesPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="service-article-list">
+        <Reveal className="service-article-list section-frame">
           {services.map((service, index) => (
             <article
               key={service.slug}
@@ -189,7 +189,7 @@ export function ServicesPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="split-layout split-layout--text-heavy">
+        <Reveal className="split-layout split-layout--text-heavy section-frame">
           <SectionHeading
             title="Що отримує клієнт на виході."
             body="Чітка просторово-матеріальна система, продуманий цикл реалізації та сад, який не втрачає якості після завершення будівництва."
@@ -222,7 +222,7 @@ export function ServicesPage() {
       </section>
 
       <section className="section section--contact shell">
-        <Reveal className="inline-cta">
+        <Reveal className="inline-cta section-frame">
           <div>
             <h2>Якщо вже є ділянка або перший запит, можна переходити до розмови.</h2>
             <p>

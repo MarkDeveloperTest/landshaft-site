@@ -15,7 +15,7 @@ export function PrivacyPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid">
+        <Reveal className="page-intro__grid section-frame section-frame--compact">
           <div>
             <h1>Ми збираємо мінімум даних і не використовуємо власні форми.</h1>
           </div>
@@ -28,7 +28,7 @@ export function PrivacyPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="legal-copy">
+        <Reveal className="legal-copy section-frame">
           <article>
             <h2>1. Контактні звернення</h2>
             <p>

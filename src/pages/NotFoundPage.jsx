@@ -17,7 +17,7 @@ export function NotFoundPage() {
       />
 
       <section className="not-found shell">
-        <Reveal className="not-found__inner">
+        <Reveal className="not-found__inner section-frame section-frame--compact">
           <h1>Сторінку не знайдено.</h1>
           <p>
             Можливо, посилання застаріло або сторінка була переміщена. Поверніться

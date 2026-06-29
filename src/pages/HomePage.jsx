@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ContactChannels } from "../components/ContactChannels";
 import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
+import { ProjectCarousel } from "../components/ProjectCarousel";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
@@ -190,7 +191,7 @@ export function HomePage() {
       />
 
       <section className="hero shell">
-        <Reveal className="hero__grid" variant="scale">
+        <Reveal className="hero__grid section-frame section-frame--hero" variant="scale">
           <div className="hero__copy">
             <h1>{homeSections.hero.title}</h1>
             <p>{homeSections.hero.body}</p>
@@ -219,7 +220,11 @@ export function HomePage() {
       </section>
 
       <section className="home-statement shell">
-        <Reveal className="split-layout split-layout--balanced" variant="up" delay={80}>
+        <Reveal
+          className="split-layout split-layout--balanced section-frame"
+          variant="up"
+          delay={80}
+        >
           <div>
             <h2>{homeSections.statement.title}</h2>
             <p>{homeSections.statement.body}</p>
@@ -239,7 +244,7 @@ export function HomePage() {
       </section>
 
       <section className="section shell">
-        <Reveal delay={120}>
+        <Reveal className="section-frame section-frame--compact" delay={120}>
           <SectionHeading
             title="Продумані ландшафти, точно реалізовані."
             body="Повний цикл роботи з приватним садом: від першого плану до довгого супроводу після завершення реалізації."
@@ -267,33 +272,13 @@ export function HomePage() {
       </section>
 
       <section className="section section--flush shell">
-        <Reveal variant="scale" delay={160}>
+        <Reveal className="section-frame" variant="scale" delay={160}>
           <SectionHeading
             title="Проєкти, у яких простір читається спокійно."
             body="Кожен сад збирається навколо одного сильного просторового жесту, а не набору декоративних рішень."
           />
 
-          <div className="project-band-grid">
-            {projects.map((project, index) => (
-              <article
-                key={project.slug}
-                className={`project-band project-band--${index % 2 === 0 ? "wide" : "split"}`}
-              >
-                <ResponsiveImage
-                  asset={project.media}
-                  className="project-band__media"
-                  imageClassName="media-frame"
-                  sizes="(min-width: 960px) 48vw, 100vw"
-                />
-                <div className="project-band__copy">
-                  <p className="project-band__index">{project.index}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.summary}</p>
-                  <p className="project-band__location">{project.location}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <ProjectCarousel projects={projects} />
 
           <div className="section__cta">
             <Link className="text-link" to="/projects">
@@ -305,7 +290,7 @@ export function HomePage() {
       </section>
 
       <section className="section shell">
-        <Reveal variant="up" delay={180}>
+        <Reveal className="section-frame section-frame--compact" variant="up" delay={180}>
           <SectionHeading
             title="Чіткий процес від першого брифу до живого саду."
             body="Ми працюємо через ясну послідовність рішень, де архітектура, посадки та догляд не розходяться між собою."
@@ -330,7 +315,7 @@ export function HomePage() {
       </section>
 
       <section className="section section--contact shell">
-        <Reveal className="contact-callout" variant="scale" delay={220}>
+        <Reveal className="contact-callout section-frame" variant="scale" delay={220}>
           <div>
             <SectionHeading
               title={homeSections.contact.title}

@@ -28,6 +28,13 @@ export function AppLayout() {
 
   return (
     <div className="site-shell">
+      <div className="site-shell__backdrop" aria-hidden="true">
+        <span className="site-shell__orb site-shell__orb--one" />
+        <span className="site-shell__orb site-shell__orb--two" />
+        <span className="site-shell__orb site-shell__orb--three" />
+        <span className="site-shell__grain" />
+      </div>
+
       <header className="site-header">
         <div className="site-header__inner shell">
           <Link className="brand-link" to="/" aria-label="Landshaft home">

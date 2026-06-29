@@ -91,7 +91,7 @@ export function ProcessPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid">
+        <Reveal className="page-intro__grid section-frame section-frame--compact">
           <div>
             <h1>Від брифу до саду, який добре старіє.</h1>
           </div>
@@ -104,7 +104,7 @@ export function ProcessPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="process-timeline">
+        <Reveal className="process-timeline section-frame">
           {processSteps.map((step) => (
             <article key={step.number} className="process-timeline__item">
               <span>{step.number}</span>
@@ -118,7 +118,7 @@ export function ProcessPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="split-layout split-layout--balanced">
+        <Reveal className="split-layout split-layout--balanced section-frame">
           <div>
             <SectionHeading
               title="Сад має залишатися переконливим і після здачі."
@@ -136,7 +136,7 @@ export function ProcessPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="split-layout split-layout--balanced">
+        <Reveal className="split-layout split-layout--balanced section-frame">
           <blockquote className="quote-block">
             <p>{testimonials[0].quote}</p>
             <footer>{testimonials[0].author}</footer>

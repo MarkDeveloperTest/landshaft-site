@@ -85,7 +85,7 @@ export function ProjectsPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid">
+        <Reveal className="page-intro__grid section-frame section-frame--compact">
           <div>
             <h1>Сади, у яких простір працює тихо й переконливо.</h1>
           </div>
@@ -98,7 +98,7 @@ export function ProjectsPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="project-showcase">
+        <Reveal className="project-showcase section-frame">
           {projects.map((project, index) => (
             <article
               key={project.slug}
@@ -122,7 +122,7 @@ export function ProjectsPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="split-layout split-layout--balanced">
+        <Reveal className="split-layout split-layout--balanced section-frame">
           <div>
             <SectionHeading
               title="Кожен проєкт формується навколо однієї чіткої ідеї."

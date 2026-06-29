@@ -93,7 +93,7 @@ export function ContactPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid">
+        <Reveal className="page-intro__grid section-frame section-frame--compact">
           <div>
             <h1>Почнімо розмову про майбутній сад.</h1>
           </div>
@@ -106,7 +106,7 @@ export function ContactPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="contact-page-grid">
+        <Reveal className="contact-page-grid section-frame">
           <div>
             <SectionHeading
               title="Напишіть там, де вам природніше."
@@ -128,7 +128,7 @@ export function ContactPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="detail-list detail-list--faq">
+        <Reveal className="detail-list detail-list--faq section-frame section-frame--compact">
           <article>
             <h3>Коли звертатися?</h3>
             <p>
