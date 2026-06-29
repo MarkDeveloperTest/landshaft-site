@@ -1,40 +1,41 @@
 const instagramUrl =
   "https://www.instagram.com/_green_garden_ua?igsh=MXZjbW40ZTZ2eWlxbg==";
 const telegramUrl = "https://t.me/bot_green_park_bot";
+const withBase = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
-const media = {
+export const media = {
   heroGarden: {
-    src: "/assets/hero-garden.png",
-    webp: "/assets/optimized/hero-garden.webp",
+    src: withBase("/assets/hero-garden.png"),
+    webp: withBase("/assets/optimized/hero-garden.webp"),
     alt: "Сучасний приватний сад із кам'яними терасами, водою та стриженою зеленню.",
   },
   serviceDesign: {
-    src: "/assets/service-design.png",
-    webp: "/assets/optimized/service-design.webp",
+    src: withBase("/assets/service-design.png"),
+    webp: withBase("/assets/optimized/service-design.webp"),
     alt: "Ескізи ландшафтного проєкту, зразки матеріалів та рослинна палітра.",
   },
   projectEstate: {
-    src: "/assets/project-estate.png",
-    webp: "/assets/optimized/project-estate.webp",
+    src: withBase("/assets/project-estate.png"),
+    webp: withBase("/assets/optimized/project-estate.webp"),
     alt: "Формальний сад біля приватної резиденції з симетричною композицією.",
   },
   projectCourtyard: {
-    src: "/assets/project-courtyard.png",
-    webp: "/assets/optimized/project-courtyard.webp",
+    src: withBase("/assets/project-courtyard.png"),
+    webp: withBase("/assets/optimized/project-courtyard.webp"),
     alt: "Камерний двір із каменем, водоймою та багаторівневим озелененням.",
   },
   projectTerrace: {
-    src: "/assets/project-terrace.png",
-    webp: "/assets/optimized/project-terrace.webp",
+    src: withBase("/assets/project-terrace.png"),
+    webp: withBase("/assets/optimized/project-terrace.webp"),
     alt: "Терасований сад із м'якими посадками та спокійною зоною відпочинку.",
   },
   serviceCare: {
-    src: "/assets/service-care.png",
-    webp: "/assets/optimized/service-care.webp",
+    src: withBase("/assets/service-care.png"),
+    webp: withBase("/assets/optimized/service-care.webp"),
     alt: "Догляд за садом, формування рослин та сезонне утримання ділянки.",
   },
   socialPreview: {
-    src: "/assets/optimized/social-preview.png",
+    src: withBase("/assets/optimized/social-preview.png"),
     alt: "Landshaft — сучасний ландшафтний дизайн для приватних резиденцій.",
   },
 };
@@ -258,5 +259,3 @@ export const homeSections = {
       "Надішліть фото ділянки, орієнтовний запит або референси. Для першого контакту найшвидше працюють Instagram та Telegram.",
   },
 };
-
-export { media };
