@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { ContactChannels } from "../components/ContactChannels";
-import { ArrowIcon } from "../components/Icons";
+import {
+  ArrowIcon,
+  BuildIcon,
+  CompassIcon,
+  LeafIcon,
+  PruneIcon,
+  WaterIcon,
+} from "../components/Icons";
 import { Meta } from "../components/Meta";
 import { ProjectCarousel } from "../components/ProjectCarousel";
 import { ResponsiveImage } from "../components/ResponsiveImage";
@@ -20,6 +27,8 @@ import { useIsMobile } from "../hooks/useIsMobile";
 export function HomePage() {
   const seo = pageSeo.home;
   const isMobile = useIsMobile();
+  const serviceIcons = [CompassIcon, BuildIcon, PruneIcon];
+  const processIcons = [CompassIcon, LeafIcon, BuildIcon, PruneIcon];
 
   if (isMobile) {
     return (
@@ -89,7 +98,15 @@ export function HomePage() {
                   delay={140 + index * 40}
                 >
                   <p className="mobile-kicker">{service.kicker}</p>
-                  <h3>{service.title}</h3>
+                  <div className="feature-title">
+                    <span className="feature-icon">
+                      {(() => {
+                        const ServiceIcon = serviceIcons[index] ?? LeafIcon;
+                        return <ServiceIcon className="icon icon--feature" />;
+                      })()}
+                    </span>
+                    <h3>{service.title}</h3>
+                  </div>
                   <p>{service.summary}</p>
                 </Reveal>
               ))}
@@ -154,8 +171,18 @@ export function HomePage() {
                   className="mobile-process-item"
                   delay={240 + index * 35}
                 >
-                  <span>{step.number}</span>
-                  <h3>{step.title}</h3>
+                  <div className="feature-title feature-title--process">
+                    <span className="feature-icon feature-icon--soft">
+                      {(() => {
+                        const ProcessIcon = processIcons[index] ?? LeafIcon;
+                        return <ProcessIcon className="icon icon--feature" />;
+                      })()}
+                    </span>
+                    <div className="feature-title__copy feature-title__copy--process">
+                      <span className="feature-title__number">{step.number}</span>
+                      <h3>{step.title}</h3>
+                    </div>
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -255,7 +282,16 @@ export function HomePage() {
               <article key={service.slug} className="service-preview__item">
                 <div className="service-preview__meta">{service.kicker}</div>
                 <div className="service-preview__body">
-                  <h3>{service.title}</h3>
+                  <div className="feature-title">
+                    <span className="feature-icon">
+                      {(() => {
+                        const serviceIndex = services.findIndex((item) => item.slug === service.slug);
+                        const ServiceIcon = serviceIcons[serviceIndex] ?? LeafIcon;
+                        return <ServiceIcon className="icon icon--feature" />;
+                      })()}
+                    </span>
+                    <h3>{service.title}</h3>
+                  </div>
                   <p>{service.summary}</p>
                 </div>
               </article>
@@ -297,10 +333,20 @@ export function HomePage() {
           />
 
           <div className="process-preview">
-            {processSteps.map((step) => (
+            {processSteps.map((step, index) => (
               <article key={step.number} className="process-preview__item">
-                <span>{step.number}</span>
-                <h3>{step.title}</h3>
+                <div className="feature-title feature-title--process">
+                  <span className="feature-icon feature-icon--soft">
+                    {(() => {
+                      const ProcessIcon = processIcons[index] ?? LeafIcon;
+                      return <ProcessIcon className="icon icon--feature" />;
+                    })()}
+                  </span>
+                  <div className="feature-title__copy feature-title__copy--process">
+                    <span className="feature-title__number">{step.number}</span>
+                    <h3>{step.title}</h3>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
