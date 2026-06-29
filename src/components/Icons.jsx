@@ -6,8 +6,8 @@ export function ArrowIcon({ className }) {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <path d="M4.167 10h11.666" />
-      <path d="M10.833 3.333 17.5 10l-6.667 6.667" />
+      <path d="M3.75 10h11.5" />
+      <path d="m10.75 5 5 5-5 5" />
     </svg>
   );
 }
@@ -69,8 +69,8 @@ export function WaterIcon({ className }) {
 export function SendIcon({ className }) {
   return (
     <svg aria-hidden="true" className={className} viewBox="0 0 24 24" fill="none">
-      <path d="m20 4-8.8 16-1.8-6.3L3 11.8 20 4Z" />
-      <path d="M20 4 9.4 13.7" />
+      <path d="M21 4 10.5 14.5" />
+      <path d="m21 4-6.2 16-2.8-6.5L5.5 10.7 21 4Z" />
     </svg>
   );
 }
@@ -112,11 +112,9 @@ export function MarkIcon({ className }) {
       viewBox="0 0 40 40"
       fill="none"
     >
-      <circle cx="20" cy="20" r="18" />
-      <path d="M20 8.667c2.5 4.1 3.833 7.333 3.833 9.833 0 4.333-2.033 7.5-3.833 9.667-1.8-2.167-3.833-5.334-3.833-9.667 0-2.5 1.333-5.733 3.833-9.833Z" />
-      <path d="M20 29.333V15" />
-      <path d="M20 18.833c-3.467-.367-6-2.067-7.667-5.167" />
-      <path d="M20 21.333c3.467-.367 6-2.067 7.667-5.167" />
+      <rect x="7" y="7" width="26" height="26" rx="7.5" />
+      <circle cx="20" cy="20" r="6" />
+      <circle cx="28" cy="12" r="1.5" fill="currentColor" stroke="none" />
     </svg>
   );
 }

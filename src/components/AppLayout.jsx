@@ -138,51 +138,10 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
       <footer className="site-footer">
         <div className="shell">
           <div className="site-footer__inner">
-            <div className="site-footer__lead">
-              <div className="site-footer__brand">
-                <Brand />
-                <p>{siteMeta.uk.description}</p>
-              </div>
-              <p className="site-footer__note">{siteMeta.uk.serviceArea}</p>
-            </div>
-
-            <div className="site-footer__meta">
-              <div className="site-footer__nav">
-                <p className="site-footer__label">Навігація</p>
-                <div className="site-footer__link-list">
-                  {navItems.map((item) => (
-                    <NavLink
-                      key={item.href}
-                      className={({ isActive }) =>
-                        `site-footer__link${isActive ? " is-active" : ""}`
-                      }
-                      to={item.href}
-                      end={item.href === "/"}
-                    >
-                      {item.label}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-
-              <div className="site-footer__contact">
-                <p className="site-footer__label">Контакт</p>
-                <div className="site-footer__link-list">
-                  {contactChannels.map((channel) => (
-                    <a
-                      key={channel.id}
-                      className="site-footer__link"
-                      href={channel.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackOutboundLead(channel.label)}
-                    >
-                      {channel.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <Link className="site-footer__brand-link" to="/" aria-label="Landshaft home">
+              <Brand />
+            </Link>
+            <p className="site-footer__copyright">© LANDSHAFT. Усі права захищено.</p>
           </div>
         </div>
       </footer>

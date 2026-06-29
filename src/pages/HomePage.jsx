@@ -1,18 +1,10 @@
 import { Link } from "react-router-dom";
 import { ContactChannels } from "../components/ContactChannels";
-import {
-  ArrowIcon,
-  BuildIcon,
-  CompassIcon,
-  LeafIcon,
-  PruneIcon,
-  WaterIcon,
-} from "../components/Icons";
+import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
 import { ProjectCarousel } from "../components/ProjectCarousel";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
-import { SectionHeading } from "../components/SectionHeading";
 import {
   contactChannels,
   homeSections,
@@ -22,196 +14,9 @@ import {
   services,
   siteMeta,
 } from "../content/siteContent";
-import { useIsMobile } from "../hooks/useIsMobile";
 
 export function HomePage() {
   const seo = pageSeo.home;
-  const isMobile = useIsMobile();
-  const serviceIcons = [CompassIcon, BuildIcon, PruneIcon];
-  const processIcons = [CompassIcon, LeafIcon, BuildIcon, PruneIcon];
-
-  if (isMobile) {
-    return (
-      <>
-        <Meta
-          title={seo.title}
-          description={seo.description}
-          path="/"
-          image={siteMeta.uk.ogImage}
-        />
-
-        <div className="mobile-page shell">
-          <section className="mobile-hero">
-            <Reveal className="mobile-hero__media" variant="scale">
-              <ResponsiveImage
-                asset={homeSections.hero.media}
-                imageClassName="media-frame"
-                priority
-                sizes="100vw"
-              />
-            </Reveal>
-
-            <Reveal className="mobile-card mobile-card--hero" delay={60}>
-              <p className="mobile-kicker">Landshaft</p>
-              <h1>{homeSections.hero.title}</h1>
-              <p>{homeSections.hero.body}</p>
-              <div className="mobile-actions">
-                <Link className="button button--solid" to={homeSections.hero.primaryCta.href}>
-                  {homeSections.hero.primaryCta.label}
-                  <ArrowIcon className="icon icon--arrow" />
-                </Link>
-                <Link
-                  className="button button--outline"
-                  to={homeSections.hero.secondaryCta.href}
-                >
-                  {homeSections.hero.secondaryCta.label}
-                </Link>
-              </div>
-            </Reveal>
-          </section>
-
-          <section className="mobile-section">
-            <Reveal className="mobile-card" delay={90}>
-              <p className="mobile-kicker">Підхід</p>
-              <h2>{homeSections.statement.title}</h2>
-              <p>{homeSections.statement.body}</p>
-              <Link className="text-link" to={homeSections.statement.linkHref}>
-                {homeSections.statement.linkLabel}
-                <ArrowIcon className="icon icon--arrow" />
-              </Link>
-            </Reveal>
-          </section>
-
-          <section className="mobile-section">
-            <Reveal className="mobile-section__header" delay={120}>
-              <SectionHeading
-                title="Продумані ландшафти, точно реалізовані."
-                body="Повний цикл роботи з приватним садом: від першого плану до довгого супроводу після завершення реалізації."
-              />
-            </Reveal>
-
-            <div className="mobile-card-grid">
-              {services.map((service, index) => (
-                <Reveal
-                  key={service.slug}
-                  className="mobile-card mobile-card--service"
-                  delay={140}
-                  staggerIndex={index}
-                >
-                  <p className="mobile-kicker">{service.kicker}</p>
-                  <div className="feature-title">
-                    <span className="feature-icon">
-                      {(() => {
-                        const ServiceIcon = serviceIcons[index] ?? LeafIcon;
-                        return <ServiceIcon className="icon icon--feature" />;
-                      })()}
-                    </span>
-                    <h3>{service.title}</h3>
-                  </div>
-                  <p>{service.summary}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            <Link className="text-link" to="/services">
-              Усі послуги
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </section>
-
-          <section className="mobile-section">
-            <Reveal className="mobile-section__header" delay={180}>
-              <SectionHeading
-                title="Проєкти, у яких простір читається спокійно."
-                body="Кожен сад збирається навколо одного сильного просторового жесту, а не набору декоративних рішень."
-              />
-            </Reveal>
-
-            <div className="mobile-project-stack">
-              {projects.map((project, index) => (
-                <Reveal
-                  key={project.slug}
-                  className="mobile-project-card"
-                  variant="scale"
-                  delay={200}
-                  staggerIndex={index}
-                  staggerStep={90}
-                >
-                  <ResponsiveImage
-                    asset={project.media}
-                    className="mobile-project-card__media"
-                    imageClassName="media-frame"
-                    sizes="100vw"
-                  />
-                  <div className="mobile-project-card__body">
-                    <p className="mobile-kicker">{project.index}</p>
-                    <h3>{project.title}</h3>
-                    <p>{project.summary}</p>
-                    <p className="mobile-project-card__location">{project.location}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            <Link className="text-link" to="/projects">
-              Переглянути всі проєкти
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </section>
-
-          <section className="mobile-section">
-            <Reveal className="mobile-section__header" delay={220}>
-              <SectionHeading
-                title="Чіткий процес від першого брифу до живого саду."
-                body="Ми працюємо через ясну послідовність рішень, де архітектура, посадки та догляд не розходяться між собою."
-              />
-            </Reveal>
-
-            <div className="mobile-process-list">
-              {processSteps.map((step, index) => (
-                <Reveal
-                  key={step.number}
-                  className="mobile-process-item"
-                  delay={240}
-                  staggerIndex={index}
-                  staggerStep={80}
-                >
-                  <div className="feature-title feature-title--process">
-                    <span className="feature-icon feature-icon--soft">
-                      {(() => {
-                        const ProcessIcon = processIcons[index] ?? LeafIcon;
-                        return <ProcessIcon className="icon icon--feature" />;
-                      })()}
-                    </span>
-                    <div className="feature-title__copy feature-title__copy--process">
-                      <span className="feature-title__number">{step.number}</span>
-                      <h3>{step.title}</h3>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            <Link className="text-link" to="/process">
-              Детальніше про процес
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </section>
-
-          <section className="mobile-section mobile-section--contact">
-            <Reveal className="mobile-card mobile-card--contact" variant="scale" delay={260}>
-              <SectionHeading
-                eyebrow="Контакти"
-                title={homeSections.contact.title}
-                body={homeSections.contact.body}
-              />
-              <ContactChannels channels={contactChannels} />
-            </Reveal>
-          </section>
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -222,20 +27,17 @@ export function HomePage() {
         image={siteMeta.uk.ogImage}
       />
 
-      <section className="hero shell">
-        <Reveal className="hero__grid section-frame section-frame--hero" variant="scale">
-          <div className="hero__copy">
+      <section className="homepage-section homepage-section--hero shell">
+        <Reveal className="homepage-panel homepage-hero" variant="scale">
+          <div className="homepage-hero__copy">
             <h1>{homeSections.hero.title}</h1>
             <p>{homeSections.hero.body}</p>
-            <div className="hero__actions">
+            <div className="homepage-actions">
               <Link className="button button--solid" to={homeSections.hero.primaryCta.href}>
                 {homeSections.hero.primaryCta.label}
                 <ArrowIcon className="icon icon--arrow" />
               </Link>
-              <Link
-                className="button button--outline"
-                to={homeSections.hero.secondaryCta.href}
-              >
+              <Link className="button button--outline" to={homeSections.hero.secondaryCta.href}>
                 {homeSections.hero.secondaryCta.label}
               </Link>
             </div>
@@ -243,24 +45,20 @@ export function HomePage() {
 
           <ResponsiveImage
             asset={homeSections.hero.media}
-            className="hero__media"
-            imageClassName="media-frame"
+            className="homepage-hero__media"
+            imageClassName="media-frame media-frame--hero"
             priority
-            sizes="(min-width: 960px) 52vw, 100vw"
+            sizes="(min-width: 980px) 52vw, 100vw"
           />
         </Reveal>
       </section>
 
-      <section className="home-statement shell">
-        <Reveal
-          className="split-layout split-layout--balanced section-frame"
-          variant="up"
-          delay={80}
-        >
-          <div>
+      <section className="homepage-section shell">
+        <Reveal className="homepage-panel homepage-statement" delay={80}>
+          <div className="homepage-statement__copy">
             <h2>{homeSections.statement.title}</h2>
             <p>{homeSections.statement.body}</p>
-            <Link className="text-link" to={homeSections.statement.linkHref}>
+            <Link className="text-link text-link--underline" to={homeSections.statement.linkHref}>
               {homeSections.statement.linkLabel}
               <ArrowIcon className="icon icon--arrow" />
             </Link>
@@ -268,112 +66,83 @@ export function HomePage() {
 
           <ResponsiveImage
             asset={homeSections.statement.media}
-            className="statement-media"
+            className="homepage-statement__media"
             imageClassName="media-frame media-frame--soft"
-            sizes="(min-width: 960px) 40vw, 100vw"
+            sizes="(min-width: 980px) 54vw, 100vw"
           />
         </Reveal>
       </section>
 
-      <section className="section shell">
-        <Reveal className="section-frame section-frame--compact" delay={120}>
-          <SectionHeading
-            title="Продумані ландшафти, точно реалізовані."
-            body="Повний цикл роботи з приватним садом: від першого плану до довгого супроводу після завершення реалізації."
-          />
+      <section className="homepage-section shell">
+        <Reveal className="homepage-panel homepage-services" delay={120}>
+          <div className="homepage-section-heading">
+            <h2>Продумані ландшафти, точно реалізовані.</h2>
+            <p>
+              Повний цикл послуг для створення та підтримки садів, що залишаються
+              красивими роками.
+            </p>
+          </div>
 
-          <div className="service-preview">
+          <div className="homepage-services__grid">
             {services.map((service) => (
-              <article key={service.slug} className="service-preview__item">
-                <div className="service-preview__meta">{service.kicker}</div>
-                <div className="service-preview__body">
-                  <div className="feature-title">
-                    <span className="feature-icon">
-                      {(() => {
-                        const serviceIndex = services.findIndex((item) => item.slug === service.slug);
-                        const ServiceIcon = serviceIcons[serviceIndex] ?? LeafIcon;
-                        return <ServiceIcon className="icon icon--feature" />;
-                      })()}
-                    </span>
-                    <h3>{service.title}</h3>
-                  </div>
+              <article key={service.slug} className="homepage-service-card">
+                <ResponsiveImage
+                  asset={service.media}
+                  className="homepage-service-card__media"
+                  imageClassName="media-frame media-frame--service"
+                  sizes="(min-width: 980px) 28vw, 100vw"
+                />
+                <div className="homepage-service-card__body">
+                  <h3>{service.title}</h3>
                   <p>{service.summary}</p>
+                  <Link className="homepage-arrow-link" to="/services" aria-label={service.title}>
+                    <ArrowIcon className="icon icon--arrow" />
+                  </Link>
                 </div>
               </article>
             ))}
           </div>
-
-          <div className="section__cta">
-            <Link className="text-link" to="/services">
-              Усі послуги
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </div>
         </Reveal>
       </section>
 
-      <section className="section section--flush shell">
-        <Reveal className="section-frame" variant="scale" delay={160}>
-          <SectionHeading
-            title="Проєкти, у яких простір читається спокійно."
-            body="Кожен сад збирається навколо одного сильного просторового жесту, а не набору декоративних рішень."
-          />
+      <section className="homepage-section shell">
+        <Reveal className="homepage-panel homepage-projects" delay={160}>
+          <div className="homepage-projects__intro">
+            <h2>Проєкти, у яких простір читається спокійно.</h2>
+            <Link className="text-link text-link--underline" to="/projects">
+              Дивитися проєкти
+              <ArrowIcon className="icon icon--arrow" />
+            </Link>
+          </div>
 
           <ProjectCarousel projects={projects} />
-
-          <div className="section__cta">
-            <Link className="text-link" to="/projects">
-              Переглянути всі проєкти
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </div>
         </Reveal>
       </section>
 
-      <section className="section shell">
-        <Reveal className="section-frame section-frame--compact" variant="up" delay={180}>
-          <SectionHeading
-            title="Чіткий процес від першого брифу до живого саду."
-            body="Ми працюємо через ясну послідовність рішень, де архітектура, посадки та догляд не розходяться між собою."
-          />
+      <section className="homepage-section shell">
+        <Reveal className="homepage-panel homepage-process" delay={200}>
+          <div className="homepage-process__intro">
+            <h2>Чіткий процес від першого брифу до живого саду.</h2>
+          </div>
 
-          <div className="process-preview">
-            {processSteps.map((step, index) => (
-              <article key={step.number} className="process-preview__item">
-                <div className="feature-title feature-title--process">
-                  <span className="feature-icon feature-icon--soft">
-                    {(() => {
-                      const ProcessIcon = processIcons[index] ?? LeafIcon;
-                      return <ProcessIcon className="icon icon--feature" />;
-                    })()}
-                  </span>
-                  <div className="feature-title__copy feature-title__copy--process">
-                    <span className="feature-title__number">{step.number}</span>
-                    <h3>{step.title}</h3>
-                  </div>
-                </div>
+          <div className="homepage-process__grid">
+            {processSteps.map((step) => (
+              <article key={step.number} className="homepage-process-card">
+                <span className="homepage-process-card__number">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
               </article>
             ))}
           </div>
-
-          <div className="section__cta">
-            <Link className="text-link" to="/process">
-              Детальніше про процес
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
-          </div>
         </Reveal>
       </section>
 
-      <section className="section section--contact shell">
-        <Reveal className="contact-callout section-frame" variant="scale" delay={220}>
-          <div>
-            <SectionHeading
-              title={homeSections.contact.title}
-              body={homeSections.contact.body}
-            />
+      <section className="homepage-section homepage-section--contact shell">
+        <Reveal className="homepage-panel homepage-contact" delay={220}>
+          <div className="homepage-contact__intro">
+            <h2>{homeSections.contact.title}</h2>
           </div>
-          <ContactChannels channels={contactChannels} />
+          <ContactChannels channels={contactChannels} compact />
         </Reveal>
       </section>
     </>

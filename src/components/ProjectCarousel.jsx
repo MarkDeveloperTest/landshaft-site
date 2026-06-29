@@ -98,42 +98,14 @@ export function ProjectCarousel({ projects }) {
                 asset={project.media}
                 className="project-carousel__media"
                 imageClassName="media-frame media-frame--carousel"
-                sizes="(min-width: 960px) 52vw, 100vw"
+                sizes="(min-width: 980px) 58vw, 100vw"
               />
-
-              <div className="project-carousel__copy">
-                <div className="project-carousel__meta">
-                  <p className="project-carousel__index">{project.index}</p>
-                  <p className="project-carousel__count">
-                    {String(index + 1).padStart(2, "0")} /{" "}
-                    {String(projects.length).padStart(2, "0")}
-                  </p>
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <p className="project-carousel__location">{project.location}</p>
-              </div>
             </article>
           );
         })}
       </div>
 
       <div className="project-carousel__controls">
-        <div className="project-carousel__pagination" aria-label="Навігація каруселі">
-          {projects.map((project, index) => (
-            <button
-              key={project.slug}
-              type="button"
-              className={`project-carousel__dot${index === activeIndex ? " is-active" : ""}`}
-              onClick={() =>
-                changeSlide(index, index > activeIndex ? "forward" : "backward")
-              }
-              aria-label={`Показати проєкт ${project.title}`}
-              aria-pressed={index === activeIndex}
-            />
-          ))}
-        </div>
-
         <div className="project-carousel__nav">
           <button
             type="button"
@@ -143,6 +115,20 @@ export function ProjectCarousel({ projects }) {
           >
             <ArrowIcon className="icon icon--arrow" />
           </button>
+          <div className="project-carousel__pagination" aria-label="Навігація каруселі">
+            {projects.map((project, index) => (
+              <button
+                key={project.slug}
+                type="button"
+                className={`project-carousel__dot${index === activeIndex ? " is-active" : ""}`}
+                onClick={() =>
+                  changeSlide(index, index > activeIndex ? "forward" : "backward")
+                }
+                aria-label={`Показати проєкт ${project.title}`}
+                aria-pressed={index === activeIndex}
+              />
+            ))}
+          </div>
           <button
             type="button"
             className="project-carousel__button"
