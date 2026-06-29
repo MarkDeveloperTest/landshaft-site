@@ -168,6 +168,7 @@ export function HomePage() {
           <section className="mobile-section mobile-section--contact">
             <Reveal className="mobile-card mobile-card--contact" variant="scale" delay={260}>
               <SectionHeading
+                eyebrow="Контакти"
                 title={homeSections.contact.title}
                 body={homeSections.contact.body}
               />

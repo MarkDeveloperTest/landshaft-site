@@ -13,10 +13,14 @@ export function ContactChannels({ channels, compact = false }) {
           rel="noreferrer"
           onClick={() => trackOutboundLead(channel.label)}
         >
-          <div>
-            <p className="contact-card__label">{channel.label}</p>
+          <div className="contact-card__content">
+            <div className="contact-card__head">
+              <p className="contact-card__label">Канал зв&apos;язку</p>
+              <span className="contact-card__platform">{channel.label}</span>
+            </div>
             <strong>{channel.handle}</strong>
             <p className="contact-card__body">{channel.description}</p>
+            <span className="contact-card__cta">Написати в {channel.label}</span>
           </div>
           <ArrowIcon className="icon icon--arrow" />
         </a>
