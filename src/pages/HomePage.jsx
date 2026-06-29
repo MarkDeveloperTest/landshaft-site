@@ -28,7 +28,7 @@ export function HomePage() {
       />
 
       <section className="hero shell">
-        <Reveal className="hero__grid">
+        <Reveal className="hero__grid" variant="scale">
           <div className="hero__copy">
             <h1>{homeSections.hero.title}</h1>
             <p>{homeSections.hero.body}</p>
@@ -57,7 +57,7 @@ export function HomePage() {
       </section>
 
       <section className="home-statement shell">
-        <Reveal className="split-layout split-layout--balanced">
+        <Reveal className="split-layout split-layout--balanced" variant="up" delay={80}>
           <div>
             <h2>{homeSections.statement.title}</h2>
             <p>{homeSections.statement.body}</p>
@@ -77,7 +77,7 @@ export function HomePage() {
       </section>
 
       <section className="section shell">
-        <Reveal>
+        <Reveal delay={120}>
           <SectionHeading
             title="Продумані ландшафти, точно реалізовані."
             body="Повний цикл роботи з приватним садом: від першого плану до довгого супроводу після завершення реалізації."
@@ -105,7 +105,7 @@ export function HomePage() {
       </section>
 
       <section className="section section--flush shell">
-        <Reveal>
+        <Reveal variant="scale" delay={160}>
           <SectionHeading
             title="Проєкти, у яких простір читається спокійно."
             body="Кожен сад збирається навколо одного сильного просторового жесту, а не набору декоративних рішень."
@@ -143,7 +143,7 @@ export function HomePage() {
       </section>
 
       <section className="section shell">
-        <Reveal>
+        <Reveal variant="up" delay={180}>
           <SectionHeading
             title="Чіткий процес від першого брифу до живого саду."
             body="Ми працюємо через ясну послідовність рішень, де архітектура, посадки та догляд не розходяться між собою."
@@ -168,7 +168,7 @@ export function HomePage() {
       </section>
 
       <section className="section section--contact shell">
-        <Reveal className="contact-callout">
+        <Reveal className="contact-callout" variant="scale" delay={220}>
           <div>
             <SectionHeading
               title={homeSections.contact.title}
