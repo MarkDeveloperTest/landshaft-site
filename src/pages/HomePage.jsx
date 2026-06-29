@@ -95,7 +95,8 @@ export function HomePage() {
                 <Reveal
                   key={service.slug}
                   className="mobile-card mobile-card--service"
-                  delay={140 + index * 40}
+                  delay={140}
+                  staggerIndex={index}
                 >
                   <p className="mobile-kicker">{service.kicker}</p>
                   <div className="feature-title">
@@ -132,7 +133,9 @@ export function HomePage() {
                   key={project.slug}
                   className="mobile-project-card"
                   variant="scale"
-                  delay={200 + index * 50}
+                  delay={200}
+                  staggerIndex={index}
+                  staggerStep={90}
                 >
                   <ResponsiveImage
                     asset={project.media}
@@ -169,7 +172,9 @@ export function HomePage() {
                 <Reveal
                   key={step.number}
                   className="mobile-process-item"
-                  delay={240 + index * 35}
+                  delay={240}
+                  staggerIndex={index}
+                  staggerStep={80}
                 >
                   <div className="feature-title feature-title--process">
                     <span className="feature-icon feature-icon--soft">

@@ -16,7 +16,7 @@ export function ResponsiveImage({
         src={asset.src}
         alt={label}
         loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
+        fetchpriority={priority ? "high" : "auto"}
         decoding="async"
       />
     </picture>

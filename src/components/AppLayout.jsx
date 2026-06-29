@@ -10,16 +10,19 @@ function Brand() {
   );
 }
 
-export function AppLayout() {
+export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
     mountAnalyticsScript();
     trackPageView(window.location.href);
-  }, [location.pathname]);
+  }, [routeTransitionPath]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
@@ -35,7 +38,7 @@ export function AppLayout() {
         <span className="site-shell__grain" />
       </div>
 
-      <header className="site-header">
+      <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
         <div className="site-header__inner shell">
           <Link className="brand-link" to="/" aria-label="Landshaft home">
             <Brand />
@@ -66,7 +69,7 @@ export function AppLayout() {
 
             <button
               type="button"
-              className="menu-button"
+              className={`menu-button${menuOpen ? " is-active" : ""}`}
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
               onClick={() => setMenuOpen((value) => !value)}
@@ -82,6 +85,7 @@ export function AppLayout() {
         </div>
 
         <div className={`mobile-nav${menuOpen ? " is-open" : ""}`}>
+          <div className="mobile-nav__scrim" aria-hidden="true" />
           <div className="shell">
             <div className="mobile-nav__inner">
               <nav aria-label="Мобільна навігація">
@@ -124,7 +128,10 @@ export function AppLayout() {
         </div>
       </header>
 
-      <main className="route-shell">
+      <main
+        key={routeTransitionPath}
+        className={`route-shell route-shell--${routeTransitionState}`}
+      >
         <Outlet />
       </main>
 
