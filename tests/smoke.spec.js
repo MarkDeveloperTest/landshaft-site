@@ -5,7 +5,7 @@ const routes = ["/", "/services", "/projects", "/process", "/contact", "/privacy
 for (const route of routes) {
   test(`route ${route} renders without framework errors`, async ({ page }) => {
     await page.goto(route);
-    await expect(page.locator("body")).toContainText("Landshaft");
+    await expect(page.locator("body")).toContainText(/LANDSHAFT/i);
     await expect(page.locator("#root")).not.toContainText("Unexpected Application Error");
     await expect(page.locator("body")).not.toContainText("Failed to fetch dynamically imported module");
   });

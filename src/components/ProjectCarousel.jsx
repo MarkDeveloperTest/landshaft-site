@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ArrowIcon } from "./Icons";
 import { ResponsiveImage } from "./ResponsiveImage";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
@@ -100,6 +101,24 @@ export function ProjectCarousel({ projects }) {
                 imageClassName="media-frame media-frame--carousel"
                 sizes="(min-width: 980px) 58vw, 100vw"
               />
+
+              <div className="project-carousel__copy">
+                <div className="project-carousel__meta">
+                  <span className="project-carousel__index">{project.index}</span>
+                  <span className="project-carousel__count">
+                    {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <p>{project.detail}</p>
+                <p className="project-carousel__location">{project.location}</p>
+                <Link className="text-link text-link--underline" to="/projects">
+                  Дивитися проєкти
+                  <ArrowIcon className="icon icon--arrow" />
+                </Link>
+              </div>
             </article>
           );
         })}
