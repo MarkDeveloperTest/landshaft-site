@@ -98,7 +98,7 @@ export function ProjectCarousel({ projects }) {
               <ResponsiveImage
                 asset={project.media}
                 className="project-carousel__media"
-                imageClassName="media-frame media-frame--carousel"
+                imageClassName="media-frame media-frame--wide"
                 sizes="(min-width: 980px) 58vw, 100vw"
               />
 

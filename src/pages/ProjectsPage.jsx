@@ -44,7 +44,7 @@ export function ProjectsPage() {
                   <ResponsiveImage
                     asset={project.media}
                     className="mobile-project-card__media"
-                    imageClassName="media-frame"
+                    imageClassName="media-frame media-frame--standard"
                     sizes="100vw"
                   />
                   <div className="mobile-project-card__body">
@@ -107,7 +107,7 @@ export function ProjectsPage() {
               <ResponsiveImage
                 asset={project.media}
                 className="project-showcase__media"
-                imageClassName="media-frame"
+                imageClassName="media-frame media-frame--wide"
                 sizes="(min-width: 960px) 54vw, 100vw"
               />
               <div className="project-showcase__copy">

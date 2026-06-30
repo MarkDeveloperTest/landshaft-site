@@ -34,7 +34,7 @@ export function ServicesPage() {
             <Reveal className="mobile-hero__media" delay={60}>
               <ResponsiveImage
                 asset={media.projectCourtyard}
-                imageClassName="media-frame"
+                imageClassName="media-frame media-frame--wide"
                 priority
                 sizes="100vw"
               />
@@ -133,7 +133,7 @@ export function ServicesPage() {
           <ResponsiveImage
             asset={media.projectCourtyard}
             className="service-page-hero__media"
-            imageClassName="media-frame"
+            imageClassName="media-frame media-frame--wide"
             priority
             sizes="(min-width: 960px) 52vw, 100vw"
           />
@@ -169,7 +169,7 @@ export function ServicesPage() {
               <ResponsiveImage
                 asset={service.media}
                 className="service-article__media"
-                imageClassName="media-frame"
+                imageClassName="media-frame media-frame--standard"
                 sizes="(min-width: 960px) 42vw, 100vw"
               />
 

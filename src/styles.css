@@ -439,11 +439,12 @@ body::after,
 .homepage-contact__intro h2 {
   color: #30382b;
   line-height: 0.98;
+  text-wrap: balance;
 }
 
 .homepage-hero h1 {
-  font-size: clamp(3.45rem, 6vw, 5.35rem);
-  max-width: 7.2ch;
+  font-size: clamp(2.05rem, 3.7vw, 3.1rem);
+  max-width: 21ch;
 }
 
 .homepage-statement h2,
@@ -451,8 +452,8 @@ body::after,
 .homepage-projects__intro h2,
 .homepage-process__intro h2,
 .homepage-contact__intro h2 {
-  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
-  max-width: 8ch;
+  font-size: clamp(1.65rem, 2.9vw, 2.3rem);
+  max-width: 20ch;
 }
 
 .homepage-hero p,
@@ -556,6 +557,17 @@ body::after,
   min-height: 100%;
 }
 
+.homepage-hero__media {
+  display: block;
+  align-self: stretch;
+}
+
+.homepage-hero__media .media-frame {
+  height: 100%;
+  min-height: 21rem;
+  aspect-ratio: 1.24;
+}
+
 .homepage-services {
   display: grid;
   gap: 2.5rem;
@@ -596,7 +608,6 @@ body::after,
 
 .homepage-service-card__media .media-frame {
   border-radius: 1.1rem;
-  aspect-ratio: 0.96;
 }
 
 .homepage-arrow-link {
@@ -652,7 +663,7 @@ body::after,
   height: 100%;
 }
 
-.media-frame--carousel {
+.project-carousel__media .media-frame {
   min-height: clamp(20rem, 52vw, 34rem);
 }
 
@@ -942,8 +953,9 @@ body::after,
   }
 
   .homepage-hero {
-    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.02fr);
+    grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
     align-items: center;
+    gap: 1.5rem;
     padding-bottom: 2.4rem;
   }
 
@@ -1417,15 +1429,17 @@ body::after,
 }
 
 h1 {
-  max-width: 9.6ch;
-  font-size: clamp(2.75rem, 6vw, 5rem);
+  max-width: 20ch;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
   line-height: 0.91;
+  text-wrap: balance;
 }
 
 h2 {
-  max-width: 12.5ch;
-  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  max-width: 20ch;
+  font-size: clamp(1.65rem, 2.9vw, 2.3rem);
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 h3 {
@@ -1568,7 +1582,7 @@ blockquote footer {
 
 .media-frame {
   width: 100%;
-  aspect-ratio: 1.02;
+  aspect-ratio: 1;
   border-radius: var(--radius);
   object-fit: cover;
   box-shadow: var(--shadow-depth-2);
@@ -1579,12 +1593,15 @@ blockquote footer {
   filter: saturate(0.96) contrast(1.02);
 }
 
-.media-frame--soft {
-  aspect-ratio: 1.12;
+.media-frame--standard {
+  aspect-ratio: 1;
+}
+
+.media-frame--wide {
+  aspect-ratio: 1.24;
 }
 
 .hero__media .media-frame {
-  aspect-ratio: 0.98;
   min-height: 22rem;
   animation: floatMedia 10s var(--motion-ease-drift) infinite;
 }
@@ -1887,10 +1904,6 @@ blockquote footer {
 .project-carousel__media {
   display: block;
   position: relative;
-}
-
-.media-frame--carousel {
-  aspect-ratio: 1.08;
 }
 
 .project-carousel__media::before {
@@ -2328,10 +2341,6 @@ blockquote footer {
     border-color var(--transition);
 }
 
-.project-showcase__media .media-frame {
-  aspect-ratio: 1.1;
-}
-
 .project-showcase__location {
   font-weight: 600;
 }
@@ -2560,7 +2569,6 @@ blockquote footer {
 
 .mobile-hero__media .media-frame,
 .mobile-project-card__media .media-frame {
-  aspect-ratio: 0.96;
   min-height: 18rem;
 }
 
@@ -2639,7 +2647,7 @@ blockquote footer {
 
 @media (max-width: 719px) {
   h1 {
-    font-size: clamp(2.2rem, 8.8vw, 3.45rem);
+    font-size: clamp(1.3rem, 4.6vw, 1.7rem);
     line-height: 0.93;
   }
 
@@ -2872,7 +2880,6 @@ blockquote footer {
   }
 
   .hero__media .media-frame {
-    aspect-ratio: 0.84;
     min-height: 39rem;
   }
 
@@ -2887,7 +2894,6 @@ blockquote footer {
   }
 
   .service-page-hero__media .media-frame {
-    aspect-ratio: 0.86;
     min-height: 35rem;
   }
 
@@ -2999,15 +3005,15 @@ blockquote footer {
   }
 
   .hero__copy h1 {
-    max-width: 8.2ch;
-    font-size: clamp(2.7rem, 5.1vw, 4.2rem);
+    max-width: 20ch;
+    font-size: clamp(1.75rem, 3.7vw, 2.35rem);
   }
 
   .page-intro h1,
   .service-page-hero h1,
   .contact-page-grid h1 {
-    max-width: 9.25ch;
-    font-size: clamp(2.55rem, 4.6vw, 4rem);
+    max-width: 20ch;
+    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
   }
 
   .hero__actions {

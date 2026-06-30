@@ -46,7 +46,7 @@ export function HomePage() {
           <ResponsiveImage
             asset={homeSections.hero.media}
             className="homepage-hero__media"
-            imageClassName="media-frame media-frame--hero"
+            imageClassName="media-frame media-frame--wide media-frame--hero"
             priority
             sizes="(min-width: 980px) 52vw, 100vw"
           />
@@ -67,7 +67,7 @@ export function HomePage() {
           <ResponsiveImage
             asset={homeSections.statement.media}
             className="homepage-statement__media"
-            imageClassName="media-frame media-frame--soft"
+            imageClassName="media-frame media-frame--wide"
             sizes="(min-width: 980px) 54vw, 100vw"
           />
         </Reveal>
@@ -89,7 +89,7 @@ export function HomePage() {
                 <ResponsiveImage
                   asset={service.media}
                   className="homepage-service-card__media"
-                  imageClassName="media-frame media-frame--service"
+                  imageClassName="media-frame media-frame--standard"
                   sizes="(min-width: 980px) 28vw, 100vw"
                 />
                 <div className="homepage-service-card__body">

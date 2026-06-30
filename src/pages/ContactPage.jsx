@@ -34,7 +34,7 @@ export function ContactPage() {
             <Reveal className="mobile-hero__media" delay={40}>
               <ResponsiveImage
                 asset={media.projectCourtyard}
-                imageClassName="media-frame"
+                imageClassName="media-frame media-frame--wide"
                 priority
                 sizes="100vw"
               />
@@ -125,7 +125,7 @@ export function ContactPage() {
           <ResponsiveImage
             asset={media.projectCourtyard}
             className="service-page-hero__media"
-            imageClassName="media-frame"
+            imageClassName="media-frame media-frame--wide"
             priority
             sizes="(min-width: 960px) 52vw, 100vw"
           />

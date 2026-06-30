@@ -58,7 +58,7 @@ export function ProcessPage() {
             <Reveal className="mobile-hero__media" variant="scale" delay={200}>
               <ResponsiveImage
                 asset={media.projectTerrace}
-                imageClassName="media-frame"
+                imageClassName="media-frame media-frame--wide"
                 sizes="100vw"
               />
             </Reveal>
@@ -129,7 +129,7 @@ export function ProcessPage() {
           <ResponsiveImage
             asset={media.projectTerrace}
             className="statement-media"
-            imageClassName="media-frame"
+            imageClassName="media-frame media-frame--wide"
             sizes="(min-width: 960px) 40vw, 100vw"
           />
         </Reveal>
