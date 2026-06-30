@@ -583,7 +583,7 @@ body::after,
 }
 
 .homepage-service-card h3 {
-  font-size: clamp(2rem, 3.3vw, 2.45rem);
+  font-size: clamp(1.75rem, 2.7vw, 2.1rem);
   color: #31372c;
 }
 
@@ -683,7 +683,7 @@ body::after,
 }
 
 .project-carousel__copy h3 {
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(1.75rem, 2.6vw, 2.3rem);
 }
 
 .project-carousel__copy > p {
@@ -747,14 +747,14 @@ body::after,
 
 .homepage-process-card__number {
   font-family: "Instrument Serif", serif;
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
   line-height: 1;
   color: #526241;
 }
 
 .homepage-process-card h3 {
   font-family: "Manrope", sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.02rem;
   font-weight: 600;
   line-height: 1.35;
   color: #33362f;
@@ -839,7 +839,7 @@ body::after,
 }
 
 .contact-card__meta strong {
-  font-size: 1.75rem;
+  font-size: 1.45rem;
   font-weight: 400;
   color: #33372f;
   font-family: "Instrument Serif", serif;
@@ -1807,7 +1807,7 @@ blockquote footer {
 .feature-title__number {
   color: var(--accent);
   font-family: "Instrument Serif", serif;
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(1.7rem, 4.6vw, 2.4rem);
   line-height: 0.9;
   flex: 0 0 auto;
 }
@@ -2252,7 +2252,7 @@ blockquote footer {
 .service-outline__index {
   color: var(--accent);
   font-family: "Instrument Serif", serif;
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   line-height: 0.92;
 }
 
@@ -2364,7 +2364,7 @@ blockquote footer {
 .process-overview__item span {
   color: var(--accent);
   font-family: "Instrument Serif", serif;
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(1.7rem, 4.6vw, 2.4rem);
   line-height: 0.92;
 }
 
@@ -2387,7 +2387,7 @@ blockquote footer {
 .quote-block p {
   color: var(--text);
   font-family: "Instrument Serif", serif;
-  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-size: clamp(1.7rem, 4.8vw, 2.6rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
 }
@@ -3045,11 +3045,11 @@ blockquote footer {
 }
 
 .process-preview__item .feature-title__number {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
 }
 
 .process-preview__item h3 {
-  font-size: clamp(1.52rem, 2.5vw, 2rem);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
   line-height: 1;
 }
 
