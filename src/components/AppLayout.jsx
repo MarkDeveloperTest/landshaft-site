@@ -61,7 +61,7 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
             </nav>
 
             <div className="desktop-actions">
-              <Link className="button button--solid" to="/contact">
+              <Link className="button button--solid site-header__cta" to="/contact">
                 Обговорити проєкт
                 <ArrowIcon className="icon icon--arrow" />
               </Link>

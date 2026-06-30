@@ -259,6 +259,11 @@ h3 {
   display: none;
 }
 
+.site-header__cta {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 /* Homepage redesign */
 
 :root {
@@ -864,6 +869,11 @@ body::after,
   .desktop-actions .button {
     min-height: 3.35rem;
     padding-inline: 1.35rem;
+  }
+
+  .site-header__cta {
+    min-width: max-content;
+    gap: 0.55rem;
   }
 
   .menu-button,
@@ -3241,6 +3251,12 @@ blockquote footer {
   .desktop-actions .button {
     min-height: 54px !important;
     padding-inline: 22px !important;
+  }
+
+  .site-header__cta {
+    min-width: max-content !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   .homepage-hero {
