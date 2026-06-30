@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { contactChannels, navItems, siteMeta } from "../content/siteContent";
-import { mountAnalyticsScript, trackOutboundLead, trackPageView } from "../lib/analytics";
+import { navItems, siteMeta } from "../content/siteContent";
+import { mountAnalyticsScript, trackPageView } from "../lib/analytics";
 import { ArrowIcon, CloseIcon, MenuIcon } from "./Icons";
 
 function Brand() {
@@ -107,21 +107,6 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
                 <Link className="button button--solid" to="/contact">
                   Обговорити проєкт
                 </Link>
-                <div className="mobile-nav__contact-list">
-                  {contactChannels.map((channel) => (
-                    <a
-                      key={channel.id}
-                      className="mobile-nav__contact"
-                      href={channel.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackOutboundLead(channel.label)}
-                    >
-                      <span>{channel.label}</span>
-                      <strong>{channel.handle}</strong>
-                    </a>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
