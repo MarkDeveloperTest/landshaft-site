@@ -62,14 +62,6 @@ export function ProjectCarousel({ projects }) {
     return null;
   }
 
-  const goPrevious = () => {
-    changeSlide((activeIndex - 1 + projects.length) % projects.length, "backward");
-  };
-
-  const goNext = () => {
-    changeSlide((activeIndex + 1) % projects.length, "forward");
-  };
-
   const getSlideState = (index) => {
     if (index === activeIndex) {
       return "active";
@@ -102,60 +94,43 @@ export function ProjectCarousel({ projects }) {
                 sizes="(min-width: 980px) 58vw, 100vw"
               />
 
+              <Link
+                className="project-carousel__slide-link"
+                to="/projects"
+                aria-label={`Відкрити проєкт ${project.title}`}
+                tabIndex={slideState === "active" ? 0 : -1}
+              />
+
               <div className="project-carousel__copy">
                 <div className="project-carousel__meta">
                   <span className="project-carousel__index">{project.index}</span>
-                  <span className="project-carousel__count">
-                    {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-                  </span>
                 </div>
 
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
                 <p>{project.detail}</p>
                 <p className="project-carousel__location">{project.location}</p>
-                <Link className="text-link text-link--underline" to="/projects">
+                <span className="text-link text-link--underline" aria-hidden="true">
                   Дивитися проєкти
                   <ArrowIcon className="icon icon--arrow" />
-                </Link>
+                </span>
               </div>
             </article>
           );
         })}
-      </div>
-
-      <div className="project-carousel__controls">
-        <div className="project-carousel__nav">
-          <button
-            type="button"
-            className="project-carousel__button project-carousel__button--prev"
-            onClick={goPrevious}
-            aria-label="Попередній проєкт"
-          >
-            <ArrowIcon className="icon icon--arrow" />
-          </button>
-          <div className="project-carousel__pagination" aria-label="Навігація каруселі">
-            {projects.map((project, index) => (
-              <button
-                key={project.slug}
-                type="button"
-                className={`project-carousel__dot${index === activeIndex ? " is-active" : ""}`}
-                onClick={() =>
-                  changeSlide(index, index > activeIndex ? "forward" : "backward")
-                }
-                aria-label={`Показати проєкт ${project.title}`}
-                aria-pressed={index === activeIndex}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            className="project-carousel__button"
-            onClick={goNext}
-            aria-label="Наступний проєкт"
-          >
-            <ArrowIcon className="icon icon--arrow" />
-          </button>
+        <div className="project-carousel__pagination" aria-label="Навігація каруселі">
+          {projects.map((project, index) => (
+            <button
+              key={project.slug}
+              type="button"
+              className={`project-carousel__dot${index === activeIndex ? " is-active" : ""}`}
+              onClick={() =>
+                changeSlide(index, index > activeIndex ? "forward" : "backward")
+              }
+              aria-label={`Показати проєкт ${project.title}`}
+              aria-pressed={index === activeIndex}
+            />
+          ))}
         </div>
       </div>
     </div>

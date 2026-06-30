@@ -86,19 +86,21 @@ export function HomePage() {
           <div className="homepage-services__grid">
             {services.map((service) => (
               <article key={service.slug} className="homepage-service-card">
-                <ResponsiveImage
-                  asset={service.media}
-                  className="homepage-service-card__media"
-                  imageClassName="media-frame media-frame--standard"
-                  sizes="(min-width: 980px) 28vw, 100vw"
-                />
-                <div className="homepage-service-card__body">
-                  <h3>{service.title}</h3>
-                  <p>{service.summary}</p>
-                  <Link className="homepage-arrow-link" to="/services" aria-label={service.title}>
-                    <ArrowIcon className="icon icon--arrow" />
-                  </Link>
-                </div>
+                <Link className="homepage-service-card__link" to="/services" aria-label={service.title}>
+                  <ResponsiveImage
+                    asset={service.media}
+                    className="homepage-service-card__media"
+                    imageClassName="media-frame media-frame--standard"
+                    sizes="(min-width: 980px) 28vw, 100vw"
+                  />
+                  <div className="homepage-service-card__body">
+                    <h3>{service.title}</h3>
+                    <p>{service.summary}</p>
+                    <span className="homepage-arrow-link" aria-hidden="true">
+                      <ArrowIcon className="icon icon--arrow" />
+                    </span>
+                  </div>
+                </Link>
               </article>
             ))}
           </div>
