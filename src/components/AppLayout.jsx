@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { navItems, siteMeta } from "../content/siteContent";
+import { contactChannels, navItems, siteMeta } from "../content/siteContent";
 import { mountAnalyticsScript, trackPageView } from "../lib/analytics";
-import { ArrowIcon, CloseIcon, MenuIcon } from "./Icons";
+import { CloseIcon, MenuIcon } from "./Icons";
 
 function Brand() {
   return (
@@ -60,13 +60,6 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
               ))}
             </nav>
 
-            <div className="desktop-actions">
-              <Link className="button button--solid site-header__cta" to="/contact">
-                Обговорити проєкт
-                <ArrowIcon className="icon icon--arrow" />
-              </Link>
-            </div>
-
             <button
               type="button"
               className={`menu-button${menuOpen ? " is-active" : ""}`}
@@ -103,11 +96,6 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
                 ))}
               </nav>
 
-              <div className="mobile-nav__actions">
-                <Link className="button button--solid" to="/contact">
-                  Обговорити проєкт
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -123,10 +111,64 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
       <footer className="site-footer">
         <div className="shell">
           <div className="site-footer__inner">
-            <Link className="site-footer__brand-link" to="/" aria-label="Landshaft home">
-              <Brand />
-            </Link>
-            <p className="site-footer__copyright">© LANDSHAFT. Усі права захищено.</p>
+            <div className="site-footer__lead">
+              <div className="site-footer__brand">
+                <Link className="site-footer__brand-link" to="/" aria-label="Landshaft home">
+                  <Brand />
+                </Link>
+                <p>
+                  Проєктуємо, реалізуємо та супроводжуємо приватні сади з архітектурною
+                  ясністю та довготривалою цінністю.
+                </p>
+              </div>
+              <p className="site-footer__note">{siteMeta.uk.serviceArea}</p>
+            </div>
+
+            <div className="site-footer__meta">
+              <nav className="site-footer__nav" aria-label="Навігація у футері">
+                <span className="site-footer__label">Навігація</span>
+                <div className="site-footer__link-list">
+                  {navItems.map((item) => (
+                    <NavLink
+                      key={item.href}
+                      className={({ isActive }) =>
+                        `site-footer__link${isActive ? " is-active" : ""}`
+                      }
+                      to={item.href}
+                      end={item.href === "/"}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                  <NavLink
+                    className={({ isActive }) =>
+                      `site-footer__link${isActive ? " is-active" : ""}`
+                    }
+                    to="/privacy"
+                  >
+                    Політика приватності
+                  </NavLink>
+                </div>
+              </nav>
+
+              <div className="site-footer__contact">
+                <span className="site-footer__label">Контакти</span>
+                <div className="site-footer__link-list">
+                  {contactChannels.map((channel) => (
+                    <a
+                      key={channel.id}
+                      className="site-footer__link"
+                      href={channel.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {channel.label}
+                    </a>
+                  ))}
+                </div>
+                <p className="site-footer__copyright">© LANDSHAFT. Усі права захищено.</p>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
