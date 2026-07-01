@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
+import { PageHero } from "../components/PageHero";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
-import { media, pageSeo, processSteps, services, siteMeta } from "../content/siteContent";
+import {
+  media,
+  pageCopy,
+  pageSeo,
+  processSteps,
+  services,
+  siteMeta,
+} from "../content/siteContent";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 export function ServicesPage() {
   const seo = pageSeo.services;
   const isMobile = useIsMobile();
+  const copy = pageCopy.services;
 
   if (isMobile) {
     return (
@@ -23,22 +32,16 @@ export function ServicesPage() {
 
         <div className="mobile-page shell">
           <section className="mobile-section">
-            <Reveal className="mobile-card mobile-card--hero" variant="scale">
-              <p className="mobile-kicker">Послуги</p>
-              <h1>Комплексний підхід до створення садів і просторів.</h1>
-              <p>
-                Комплексний підхід до створення садів і просторів, що поєднують
-                естетику, функціональність і довговічність.
-              </p>
-            </Reveal>
-            <Reveal className="mobile-hero__media" delay={60}>
-              <ResponsiveImage
-                asset={media.projectCourtyard}
-                imageClassName="media-frame media-frame--wide"
-                priority
-                sizes="100vw"
-              />
-            </Reveal>
+            <PageHero
+              eyebrow={copy.hero.kicker}
+              title={copy.hero.title}
+              body={copy.hero.body}
+              primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+              secondaryAction={{ label: copy.hero.secondaryCta, to: "/process" }}
+              media={media.projectCourtyard}
+              mediaSizes="100vw"
+              priority
+            />
           </section>
 
           <section className="mobile-section">
@@ -56,8 +59,8 @@ export function ServicesPage() {
           <section className="mobile-section">
             <Reveal className="mobile-section__header" delay={180}>
               <SectionHeading
-                title="Процес"
-                body="Чітка послідовність етапів і увага до деталей — від першої зустрічі до реалізації та підтримки."
+                title={copy.process.title}
+                body={copy.process.body}
               />
             </Reveal>
 
@@ -78,13 +81,10 @@ export function ServicesPage() {
 
           <section className="mobile-section">
             <Reveal className="mobile-card mobile-card--contact" variant="scale" delay={260}>
-              <h2>Якщо вже є ділянка або перший запит, можна переходити до розмови.</h2>
-              <p>
-                Найкращий старт для проєкту — кілька фото ділянки, орієнтовні
-                побажання і розуміння бажаного масштабу робіт.
-              </p>
+              <h2>{copy.contact.title}</h2>
+              <p>{copy.contact.body}</p>
               <Link className="button button--solid" to="/contact">
-                Перейти до контактів
+                {copy.contact.cta}
                 <ArrowIcon className="icon icon--arrow" />
               </Link>
             </Reveal>
@@ -104,47 +104,34 @@ export function ServicesPage() {
       />
 
       <section className="page-intro page-intro--services shell">
-        <Reveal className="service-page-hero section-frame section-frame--hero">
-          <div className="service-page-hero__copy">
-            <h1>Послуги</h1>
-            <p>
-              Комплексний підхід до створення садів і просторів, що поєднують
-              естетику, функціональність і довговічність.
-            </p>
-
-            <div className="service-outline">
-              {services.map((service) => (
-                <article key={service.slug} className="service-outline__item">
-                  <p className="service-outline__index">{service.kicker}</p>
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.summary}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <Link className="text-link" to="/contact">
-              Обговорити проєкт
-              <ArrowIcon className="icon icon--arrow" />
-            </Link>
+        <PageHero
+          eyebrow={copy.hero.kicker}
+          title={copy.hero.title}
+          body={copy.hero.body}
+          primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+          secondaryAction={{ label: copy.hero.secondaryCta, to: "/process" }}
+          media={media.projectCourtyard}
+          priority
+        >
+          <div className="service-outline">
+            {services.map((service) => (
+              <article key={service.slug} className="service-outline__item">
+                <p className="service-outline__index">{service.kicker}</p>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.summary}</p>
+                </div>
+              </article>
+            ))}
           </div>
-
-          <ResponsiveImage
-            asset={media.projectCourtyard}
-            className="service-page-hero__media"
-            imageClassName="media-frame media-frame--wide"
-            priority
-            sizes="(min-width: 960px) 52vw, 100vw"
-          />
-        </Reveal>
+        </PageHero>
       </section>
 
       <section className="section section--services-overview shell">
         <Reveal className="section-frame section-frame--compact">
           <SectionHeading
-            title="Процес"
-            body="Чітка послідовність етапів і увага до деталей — від першої зустрічі до реалізації та підтримки."
+            title={copy.process.title}
+            body={copy.process.body}
           />
 
           <div className="process-overview">
@@ -191,31 +178,22 @@ export function ServicesPage() {
       <section className="section section--services-value shell">
         <Reveal className="split-layout split-layout--text-heavy section-frame">
           <SectionHeading
-            title="Що отримує клієнт на виході."
-            body="Чітка просторово-матеріальна система, продуманий цикл реалізації та сад, який не втрачає якості після завершення будівництва."
+            title={copy.value.title}
+            body={copy.value.body}
           />
 
           <div className="detail-list">
             <article>
-              <h3>Ясна композиція</h3>
-              <p>
-                Кожне рішення перевіряється на масштаб, ритм руху, світло,
-                функціональність і зв'язок з архітектурою.
-              </p>
+              <h3>Ясний задум</h3>
+              <p>Кожне рішення перевіряється на масштаб, ритм і зв'язок з архітектурою.</p>
             </article>
             <article>
               <h3>Контроль виконання</h3>
-              <p>
-                Ми супроводжуємо етапи реалізації так, щоб матеріали й посадки
-                залишались вірними початковій логіці проєкту.
-              </p>
+              <p>Матеріали й посадки залишаються вірними початковій логіці проєкту.</p>
             </article>
             <article>
-              <h3>Довгострокова цінність</h3>
-              <p>
-                Сад закладається з урахуванням часу: як він росте, дозріває і
-                змінюється через рік, три та п'ять сезонів.
-              </p>
+              <h3>Довга перспектива</h3>
+              <p>Сад закладається з урахуванням того, як він росте і змінюється в часі.</p>
             </article>
           </div>
         </Reveal>
@@ -224,14 +202,11 @@ export function ServicesPage() {
       <section className="section section--contact section--services-contact shell">
         <Reveal className="inline-cta section-frame">
           <div>
-            <h2>Якщо вже є ділянка або перший запит, можна переходити до розмови.</h2>
-            <p>
-              Найкращий старт для проєкту — кілька фото ділянки, орієнтовні
-              побажання і розуміння бажаного масштабу робіт.
-            </p>
+            <h2>{copy.contact.title}</h2>
+            <p>{copy.contact.body}</p>
           </div>
           <Link className="button button--solid" to="/contact">
-            Перейти до контактів
+            {copy.contact.cta}
             <ArrowIcon className="icon icon--arrow" />
           </Link>
         </Reveal>

@@ -10,10 +10,17 @@ export function ProjectCarousel({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(null);
   const [direction, setDirection] = useState("forward");
+  const [isPointerPaused, setIsPointerPaused] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (projects.length <= 1 || prefersReducedMotion) {
+    if (
+      projects.length <= 1 ||
+      prefersReducedMotion ||
+      isPointerPaused ||
+      hasUserInteracted
+    ) {
       return undefined;
     }
 
@@ -22,11 +29,13 @@ export function ProjectCarousel({ projects }) {
     }, 5200);
 
     return () => window.clearInterval(timer);
-  }, [activeIndex, prefersReducedMotion, projects.length]);
+  }, [activeIndex, hasUserInteracted, isPointerPaused, prefersReducedMotion, projects.length]);
 
   useEffect(() => {
     setActiveIndex(0);
     setPreviousIndex(null);
+    setIsPointerPaused(false);
+    setHasUserInteracted(false);
   }, [projects]);
 
   useEffect(() => {
@@ -41,12 +50,15 @@ export function ProjectCarousel({ projects }) {
     return () => window.clearTimeout(timer);
   }, [prefersReducedMotion, previousIndex]);
 
-  const changeSlide = (nextIndex, nextDirection) => {
+  const changeSlide = (nextIndex, nextDirection, { userInitiated = false } = {}) => {
     if (nextIndex === activeIndex) {
       return;
     }
 
     setDirection(nextDirection);
+    if (userInitiated) {
+      setHasUserInteracted(true);
+    }
 
     if (prefersReducedMotion) {
       setPreviousIndex(null);
@@ -56,6 +68,14 @@ export function ProjectCarousel({ projects }) {
 
     setPreviousIndex(activeIndex);
     setActiveIndex(nextIndex);
+  };
+
+  const handleBlurCapture = (event) => {
+    if (event.currentTarget.contains(event.relatedTarget)) {
+      return;
+    }
+
+    setIsPointerPaused(false);
   };
 
   if (projects.length === 0) {
@@ -75,7 +95,15 @@ export function ProjectCarousel({ projects }) {
   };
 
   return (
-    <div className="project-carousel" aria-label="Карусель проєктів">
+    <div
+      className="project-carousel"
+      aria-label="Карусель проєктів"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setIsPointerPaused(true)}
+      onMouseLeave={() => setIsPointerPaused(false)}
+      onFocusCapture={() => setIsPointerPaused(true)}
+      onBlurCapture={handleBlurCapture}
+    >
       <div className="project-carousel__viewport">
         {projects.map((project, index) => {
           const slideState = getSlideState(index);
@@ -104,6 +132,9 @@ export function ProjectCarousel({ projects }) {
               <div className="project-carousel__copy">
                 <div className="project-carousel__meta">
                   <span className="project-carousel__index">{project.index}</span>
+                  <span className="project-carousel__count">
+                    {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                  </span>
                 </div>
 
                 <h3>{project.title}</h3>
@@ -125,9 +156,12 @@ export function ProjectCarousel({ projects }) {
               type="button"
               className={`project-carousel__dot${index === activeIndex ? " is-active" : ""}`}
               onClick={() =>
-                changeSlide(index, index > activeIndex ? "forward" : "backward")
+                changeSlide(index, index > activeIndex ? "forward" : "backward", {
+                  userInitiated: true,
+                })
               }
               aria-label={`Показати проєкт ${project.title}`}
+              aria-current={index === activeIndex ? "true" : undefined}
               aria-pressed={index === activeIndex}
             />
           ))}

@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
+import { PageHero } from "../components/PageHero";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
 import {
   media,
+  pageCopy,
   pageSeo,
   processSteps,
   siteMeta,
@@ -14,6 +18,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 export function ProcessPage() {
   const seo = pageSeo.process;
   const isMobile = useIsMobile();
+  const copy = pageCopy.process;
 
   if (isMobile) {
     return (
@@ -27,15 +32,13 @@ export function ProcessPage() {
 
         <div className="mobile-page shell">
           <section className="mobile-section">
-            <Reveal className="mobile-card mobile-card--hero" variant="scale">
-              <p className="mobile-kicker">Процес</p>
-              <h1>Від брифу до саду, який добре старіє.</h1>
-              <p>
-                Ми працюємо не лише над образом майбутнього простору, а й над тим,
-                як він буде реалізований, утриманий та прочитаний у повсякденному
-                житті через роки.
-              </p>
-            </Reveal>
+            <PageHero
+              eyebrow={copy.hero.kicker}
+              title={copy.hero.title}
+              body={copy.hero.body}
+              primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+              secondaryAction={{ label: copy.hero.secondaryCta, to: "/services" }}
+            />
           </section>
 
           <section className="mobile-section">
@@ -64,9 +67,13 @@ export function ProcessPage() {
             </Reveal>
             <Reveal className="mobile-card" delay={240}>
               <SectionHeading
-                title="Сад має залишатися переконливим і після здачі."
-                body="Тому ми відразу думаємо про сервісний цикл, темп росту посадок, сезонні зміни й те, як простір поводиться без штучного ефекту новизни."
+                title={copy.statement.title}
+                body={copy.statement.body}
               />
+              <Link className="button button--solid" to="/contact">
+                {copy.hero.cta}
+                <ArrowIcon className="icon icon--arrow" />
+              </Link>
             </Reveal>
           </section>
 
@@ -91,16 +98,13 @@ export function ProcessPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid section-frame section-frame--compact">
-          <div>
-            <h1>Від брифу до саду, який добре старіє.</h1>
-          </div>
-          <p>
-            Ми працюємо не лише над образом майбутнього простору, а й над тим,
-            як він буде реалізований, утриманий та прочитаний у повсякденному
-            житті через роки.
-          </p>
-        </Reveal>
+        <PageHero
+          eyebrow={copy.hero.kicker}
+          title={copy.hero.title}
+          body={copy.hero.body}
+          primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+          secondaryAction={{ label: copy.hero.secondaryCta, to: "/services" }}
+        />
       </section>
 
       <section className="section shell">
@@ -121,9 +125,13 @@ export function ProcessPage() {
         <Reveal className="split-layout split-layout--balanced section-frame">
           <div>
             <SectionHeading
-              title="Сад має залишатися переконливим і після здачі."
-              body="Тому ми відразу думаємо про сервісний цикл, темп росту посадок, сезонні зміни й те, як простір поводиться без штучного ефекту новизни."
+              title={copy.statement.title}
+              body={copy.statement.body}
             />
+            <Link className="button button--solid" to="/contact">
+              {copy.hero.cta}
+              <ArrowIcon className="icon icon--arrow" />
+            </Link>
           </div>
 
           <ResponsiveImage
@@ -136,35 +144,11 @@ export function ProcessPage() {
       </section>
 
       <section className="section shell">
-        <Reveal className="split-layout split-layout--balanced section-frame">
+        <Reveal className="section-frame section-frame--compact">
           <blockquote className="quote-block">
             <p>{testimonials[0].quote}</p>
             <footer>{testimonials[0].author}</footer>
           </blockquote>
-
-          <div className="detail-list">
-            <article>
-              <h3>Прозорий ритм роботи</h3>
-              <p>
-                Клієнт завжди розуміє, на якому етапі перебуває проєкт і які
-                рішення приймаються далі.
-              </p>
-            </article>
-            <article>
-              <h3>Менше випадковості</h3>
-              <p>
-                Ми відсікаємо зайве на ранніх етапах, щоб під час реалізації не
-                втрачати якість через компроміси.
-              </p>
-            </article>
-            <article>
-              <h3>Орієнтація на довгий термін</h3>
-              <p>
-                Усі матеріали та посадки оцінюються не лише в день здачі, а й у
-                перспективі кількох сезонів.
-              </p>
-            </article>
-          </div>
         </Reveal>
       </section>
     </>

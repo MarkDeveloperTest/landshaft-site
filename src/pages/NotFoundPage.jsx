@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
-import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
-import { Reveal } from "../components/Reveal";
-import { pageSeo, siteMeta } from "../content/siteContent";
+import { PageHero } from "../components/PageHero";
+import { pageCopy, pageSeo, siteMeta } from "../content/siteContent";
 
 export function NotFoundPage() {
   const seo = pageSeo.notFound;
+  const copy = pageCopy.notFound;
 
   return (
     <>
@@ -14,20 +13,18 @@ export function NotFoundPage() {
         description={seo.description}
         path="/404"
         image={siteMeta.uk.ogImage}
+        noIndex
       />
 
       <section className="not-found shell">
-        <Reveal className="not-found__inner section-frame section-frame--compact">
-          <h1>Сторінку не знайдено.</h1>
-          <p>
-            Можливо, посилання застаріло або сторінка була переміщена. Поверніться
-            на головну та продовжіть перегляд.
-          </p>
-          <Link className="button button--solid" to="/">
-            На головну
-            <ArrowIcon className="icon icon--arrow" />
-          </Link>
-        </Reveal>
+        <PageHero
+          eyebrow={copy.kicker}
+          title={copy.title}
+          body={copy.body}
+          primaryAction={{ label: copy.cta, to: "/" }}
+          secondaryAction={{ label: copy.secondaryCta, to: "/projects" }}
+          className="not-found__hero"
+        />
       </section>
     </>
   );

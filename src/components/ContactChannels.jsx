@@ -19,6 +19,7 @@ export function ContactChannels({ channels, compact = false }) {
             href={channel.href}
             target="_blank"
             rel="noreferrer"
+            aria-label={`${channel.label}: ${channel.handle}. ${channel.description}`}
             onClick={() => trackOutboundLead(channel.label)}
           >
             <div className="contact-card__content">
@@ -40,6 +41,13 @@ export function ContactChannels({ channels, compact = false }) {
                   <strong>{channel.handle}</strong>
                   <p className="contact-card__body">{channel.description}</p>
                 </div>
+              </div>
+
+              <div className="contact-card__footer" aria-hidden="true">
+                <span className="contact-card__hint">Відкрити канал</span>
+                <span className="contact-card__cta">
+                  <ArrowIcon className="icon icon--arrow" />
+                </span>
               </div>
             </div>
           </a>

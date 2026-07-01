@@ -8,6 +8,7 @@ import { Reveal } from "../components/Reveal";
 import {
   contactChannels,
   homeSections,
+  pageCopy,
   pageSeo,
   processSteps,
   projects,
@@ -76,11 +77,8 @@ export function HomePage() {
       <section className="homepage-section shell">
         <Reveal className="homepage-panel homepage-services" delay={120}>
           <div className="homepage-section-heading">
-            <h2>Продумані ландшафти, точно реалізовані.</h2>
-            <p>
-              Повний цикл послуг для створення та підтримки садів, що залишаються
-              красивими роками.
-            </p>
+            <h2>{pageCopy.home.servicesIntro.title}</h2>
+            <p>{pageCopy.home.servicesIntro.body}</p>
           </div>
 
           <div className="homepage-services__grid">
@@ -110,7 +108,7 @@ export function HomePage() {
       <section className="homepage-section shell">
         <Reveal className="homepage-panel homepage-projects" delay={160}>
           <div className="homepage-projects__intro">
-            <h2>Проєкти, у яких простір читається спокійно.</h2>
+            <h2>{pageCopy.home.projectsIntro}</h2>
             <Link className="text-link text-link--underline" to="/projects">
               Дивитися проєкти
               <ArrowIcon className="icon icon--arrow" />
@@ -124,7 +122,7 @@ export function HomePage() {
       <section className="homepage-section shell">
         <Reveal className="homepage-panel homepage-process" delay={200}>
           <div className="homepage-process__intro">
-            <h2>Чіткий процес від першого брифу до живого саду.</h2>
+            <h2>{pageCopy.home.processIntro}</h2>
           </div>
 
           <div className="homepage-process__grid">

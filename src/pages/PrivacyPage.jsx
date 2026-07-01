@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
+import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { pageSeo, siteMeta } from "../content/siteContent";
+import { pageCopy, pageSeo, siteMeta } from "../content/siteContent";
 
 export function PrivacyPage() {
   const seo = pageSeo.privacy;
+  const copy = pageCopy.privacy;
 
   return (
     <>
@@ -15,56 +19,36 @@ export function PrivacyPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid section-frame section-frame--compact">
-          <div>
-            <h1>Ми збираємо мінімум даних і не використовуємо власні форми.</h1>
-          </div>
-          <p>
-            Сайт Landshaft працює як інформаційна платформа та направляє
-            користувача у зовнішні канали зв'язку. Нижче — коротко про те, які
-            дані можуть з'являтися під час користування сайтом.
-          </p>
-        </Reveal>
+        <PageHero
+          eyebrow={copy.hero.kicker}
+          title={copy.hero.title}
+          body={copy.hero.body}
+          primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+          secondaryAction={{ label: copy.hero.secondaryCta, to: "/" }}
+        />
       </section>
 
       <section className="section shell">
         <Reveal className="legal-copy section-frame">
-          <article>
-            <h2>1. Контактні звернення</h2>
-            <p>
-              Ми не зберігаємо звернення через вбудовану форму, оскільки у v1
-              сайту немає власного механізму відправки даних. Коли ви переходите
-              до Instagram або Telegram, подальша обробка даних регулюється
-              політиками відповідних сервісів.
-            </p>
-          </article>
+          {copy.sections.map((section) => (
+            <article key={section.title}>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </article>
+          ))}
+        </Reveal>
+      </section>
 
-          <article>
-            <h2>2. Аналітика</h2>
-            <p>
-              Якщо для сайту увімкнена Plausible-аналітика, ми фіксуємо лише
-              базові події перегляду сторінок та переходів у контактні канали.
-              Персональні форми, профілі користувачів або рекламні трекери не
-              використовуються.
-            </p>
-          </article>
-
-          <article>
-            <h2>3. Технічні дані</h2>
-            <p>
-              Хостинг-провайдер може автоматично зберігати журнали доступу,
-              включно з IP-адресою, типом браузера та часом звернення. Ці дані
-              потрібні для безпеки та стабільності роботи сайту.
-            </p>
-          </article>
-
-          <article>
-            <h2>4. Оновлення політики</h2>
-            <p>
-              Якщо структура сайту або набір сервісів зміниться, ця сторінка
-              буде оновлена. Актуальна версія політики публікується саме тут.
-            </p>
-          </article>
+      <section className="section shell">
+        <Reveal className="inline-cta">
+          <div>
+            <h2>{copy.contact.title}</h2>
+            <p>{copy.contact.body}</p>
+          </div>
+          <Link className="button button--solid" to="/contact">
+            {copy.contact.cta}
+            <ArrowIcon className="icon icon--arrow" />
+          </Link>
         </Reveal>
       </section>
     </>

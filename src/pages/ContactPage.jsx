@@ -1,14 +1,34 @@
 import { ContactChannels } from "../components/ContactChannels";
 import { Meta } from "../components/Meta";
-import { ResponsiveImage } from "../components/ResponsiveImage";
+import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
-import { contactChannels, media, pageSeo, siteMeta } from "../content/siteContent";
+import {
+  contactChannels,
+  media,
+  pageCopy,
+  pageSeo,
+  siteMeta,
+} from "../content/siteContent";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { trackOutboundLead } from "../lib/analytics";
 
 export function ContactPage() {
   const seo = pageSeo.contact;
   const isMobile = useIsMobile();
+  const copy = pageCopy.contact;
+  const heroDetails = isMobile
+    ? []
+    : [
+        {
+          label: copy.notes.geographyLabel,
+          value: siteMeta.uk.serviceArea,
+        },
+        {
+          label: copy.notes.startLabel,
+          value: copy.notes.startBody,
+        },
+      ];
 
   if (isMobile) {
     return (
@@ -22,40 +42,35 @@ export function ContactPage() {
 
         <div className="mobile-page shell">
           <section className="mobile-section">
-            <Reveal className="mobile-card mobile-card--hero" variant="scale">
-              <p className="mobile-kicker">Контакти</p>
-              <h1>Почнімо розмову про майбутній сад.</h1>
-              <p>
-                Найшвидший шлях до першого діалогу — кілька фото ділянки, орієнтовні
-                побажання та референси. Для цього ми тримаємо два зручні прямі
-                канали зв&apos;язку.
-              </p>
-            </Reveal>
-            <Reveal className="mobile-hero__media" delay={40}>
-              <ResponsiveImage
-                asset={media.projectCourtyard}
-                imageClassName="media-frame media-frame--wide"
-                priority
-                sizes="100vw"
-              />
-            </Reveal>
+            <PageHero
+              eyebrow={copy.hero.kicker}
+              title={copy.hero.title}
+              body={copy.hero.body}
+              primaryAction={{
+                label: copy.hero.primaryCta,
+                href: contactChannels[0].href,
+                ariaLabel: `${contactChannels[0].label}: ${contactChannels[0].handle}`,
+                onClick: () => trackOutboundLead(contactChannels[0].label),
+              }}
+              secondaryAction={{
+                label: copy.hero.secondaryCta,
+                href: contactChannels[1].href,
+                ariaLabel: `${contactChannels[1].label}: ${contactChannels[1].handle}`,
+                onClick: () => trackOutboundLead(contactChannels[1].label),
+              }}
+              details={heroDetails}
+              media={media.projectCourtyard}
+              mediaSizes="100vw"
+              priority
+            />
           </section>
 
           <section className="mobile-section">
             <Reveal className="mobile-card" delay={60}>
               <SectionHeading
-                title="Напишіть там, де вам природніше."
-                body="Instagram зручний для збережених референсів і візуального настрою. Telegram краще підходить для швидкого старту, фото ділянки та короткого брифу."
+                title={copy.channels.title}
+                body={copy.channels.body}
               />
-              <div className="contact-page__notes">
-                <p>
-                  <strong>Географія:</strong> {siteMeta.uk.serviceArea}
-                </p>
-                <p>
-                  <strong>На старті корисно:</strong> площа ділянки, кілька фото,
-                  побажання до функцій та бажаний рівень участі в реалізації.
-                </p>
-              </div>
             </Reveal>
             <Reveal className="mobile-card mobile-card--contact" delay={100}>
               <ContactChannels channels={contactChannels} />
@@ -64,27 +79,12 @@ export function ContactPage() {
 
           <section className="mobile-section">
             <Reveal className="detail-list detail-list--faq" delay={140}>
-              <article>
-                <h3>Коли звертатися?</h3>
-                <p>
-                  Найкраще — до початку активних будівельних робіт на ділянці або
-                  паралельно з архітектурним проєктом будинку.
-                </p>
-              </article>
-              <article>
-                <h3>Чи можна прийти з готовим запитом?</h3>
-                <p>
-                  Так. Якщо вже є креслення, візуалізації чи список побажань, ми
-                  інтегруємо їх у перший етап аналізу.
-                </p>
-              </article>
-              <article>
-                <h3>Чи берете ви сад у супровід після реалізації?</h3>
-                <p>
-                  Так, якщо формат і масштаб ділянки відповідають сервісному
-                  календарю Landshaft.
-                </p>
-              </article>
+              {copy.faq.map((item) => (
+                <article key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
             </Reveal>
           </section>
         </div>
@@ -102,52 +102,35 @@ export function ContactPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="service-page-hero section-frame section-frame--hero">
-          <div className="service-page-hero__copy">
-            <h1>Почнімо розмову про майбутній сад.</h1>
-            <p>
-              Найшвидший шлях до першого діалогу — кілька фото ділянки, орієнтовні
-              побажання та референси. Для цього ми тримаємо два зручні прямі
-              канали зв&apos;язку.
-            </p>
-
-            <div className="contact-page__notes">
-              <p>
-                <strong>Географія:</strong> {siteMeta.uk.serviceArea}
-              </p>
-              <p>
-                <strong>На старті корисно:</strong> площа ділянки, кілька фото,
-                побажання до функцій та бажаний рівень участі в реалізації.
-              </p>
-            </div>
-          </div>
-
-          <ResponsiveImage
-            asset={media.projectCourtyard}
-            className="service-page-hero__media"
-            imageClassName="media-frame media-frame--wide"
-            priority
-            sizes="(min-width: 960px) 52vw, 100vw"
-          />
-        </Reveal>
+        <PageHero
+          eyebrow={copy.hero.kicker}
+          title={copy.hero.title}
+          body={copy.hero.body}
+          primaryAction={{
+            label: copy.hero.primaryCta,
+            href: contactChannels[0].href,
+            ariaLabel: `${contactChannels[0].label}: ${contactChannels[0].handle}`,
+            onClick: () => trackOutboundLead(contactChannels[0].label),
+          }}
+          secondaryAction={{
+            label: copy.hero.secondaryCta,
+            href: contactChannels[1].href,
+            ariaLabel: `${contactChannels[1].label}: ${contactChannels[1].handle}`,
+            onClick: () => trackOutboundLead(contactChannels[1].label),
+          }}
+          details={heroDetails}
+          media={media.projectCourtyard}
+          priority
+        />
       </section>
 
       <section className="section shell">
         <Reveal className="contact-page-grid section-frame">
           <div>
             <SectionHeading
-              title="Напишіть там, де вам природніше."
-              body="Instagram зручний для збережених референсів і візуального настрою. Telegram краще підходить для швидкого старту, фото ділянки та короткого брифу."
+              title={copy.channels.title}
+              body={copy.channels.body}
             />
-            <div className="contact-page__notes contact-page__notes--stacked">
-              <p>
-                <strong>Територія роботи:</strong> {siteMeta.uk.serviceArea}
-              </p>
-              <p>
-                <strong>Що надіслати спочатку:</strong> загальний план ділянки,
-                кілька фото, короткий опис побажань та референси, які відгукуються.
-              </p>
-            </div>
           </div>
 
           <ContactChannels channels={contactChannels} />
@@ -156,27 +139,12 @@ export function ContactPage() {
 
       <section className="section shell">
         <Reveal className="detail-list detail-list--faq section-frame section-frame--compact">
-          <article>
-            <h3>Коли звертатися?</h3>
-            <p>
-              Найкраще — до початку активних будівельних робіт на ділянці або
-              паралельно з архітектурним проєктом будинку.
-            </p>
-          </article>
-          <article>
-            <h3>Чи можна прийти з готовим запитом?</h3>
-            <p>
-              Так. Якщо вже є креслення, візуалізації чи список побажань, ми
-              інтегруємо їх у перший етап аналізу.
-            </p>
-          </article>
-          <article>
-            <h3>Чи берете ви сад у супровід після реалізації?</h3>
-            <p>
-              Так, якщо формат і масштаб ділянки відповідають сервісному
-              календарю Landshaft.
-            </p>
-          </article>
+          {copy.faq.map((item) => (
+            <article key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
         </Reveal>
       </section>
     </>

@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
+import { ArrowIcon } from "../components/Icons";
 import { Meta } from "../components/Meta";
+import { PageHero } from "../components/PageHero";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
-import { pageSeo, projects, siteMeta, testimonials } from "../content/siteContent";
+import { pageCopy, pageSeo, projects, siteMeta, testimonials } from "../content/siteContent";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 export function ProjectsPage() {
   const seo = pageSeo.projects;
   const isMobile = useIsMobile();
+  const copy = pageCopy.projects;
 
   if (isMobile) {
     return (
@@ -21,15 +25,13 @@ export function ProjectsPage() {
 
         <div className="mobile-page shell">
           <section className="mobile-section">
-            <Reveal className="mobile-card mobile-card--hero" variant="scale">
-              <p className="mobile-kicker">Проєкти</p>
-              <h1>Сади, у яких простір працює тихо й переконливо.</h1>
-              <p>
-                Ми віддаємо перевагу кільком сильним жестам замість перевантаження
-                декоративністю. Саме тому кожен проєкт читається спокійно, але має
-                виразний характер.
-              </p>
-            </Reveal>
+            <PageHero
+              eyebrow={copy.hero.kicker}
+              title={copy.hero.title}
+              body={copy.hero.body}
+              primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+              secondaryAction={{ label: copy.hero.secondaryCta, to: "/services" }}
+            />
           </section>
 
           <section className="mobile-section">
@@ -61,9 +63,13 @@ export function ProjectsPage() {
           <section className="mobile-section">
             <Reveal className="mobile-card" delay={220}>
               <SectionHeading
-                title="Кожен проєкт формується навколо однієї чіткої ідеї."
-                body="Ми не збираємо сад із розрізнених ефектів. Вода, камінь, посадки та маршрути мають працювати як одна композиція."
+                title={copy.closing.title}
+                body={copy.closing.body}
               />
+              <Link className="button button--solid" to="/contact">
+                {copy.hero.cta}
+                <ArrowIcon className="icon icon--arrow" />
+              </Link>
             </Reveal>
             <Reveal className="quote-block" variant="up" delay={260}>
               <p>{testimonials[0].quote}</p>
@@ -85,16 +91,13 @@ export function ProjectsPage() {
       />
 
       <section className="page-intro shell">
-        <Reveal className="page-intro__grid section-frame section-frame--compact">
-          <div>
-            <h1>Сади, у яких простір працює тихо й переконливо.</h1>
-          </div>
-          <p>
-            Ми віддаємо перевагу кільком сильним жестам замість перевантаження
-            декоративністю. Саме тому кожен проєкт читається спокійно, але має
-            виразний характер.
-          </p>
-        </Reveal>
+        <PageHero
+          eyebrow={copy.hero.kicker}
+          title={copy.hero.title}
+          body={copy.hero.body}
+          primaryAction={{ label: copy.hero.cta, to: "/contact" }}
+          secondaryAction={{ label: copy.hero.secondaryCta, to: "/services" }}
+        />
       </section>
 
       <section className="section shell">
@@ -122,9 +125,13 @@ export function ProjectsPage() {
         <Reveal className="split-layout split-layout--balanced section-frame">
           <div>
             <SectionHeading
-              title="Кожен проєкт формується навколо однієї чіткої ідеї."
-              body="Ми не збираємо сад із розрізнених ефектів. Вода, камінь, посадки та маршрути мають працювати як одна композиція."
+              title={copy.closing.title}
+              body={copy.closing.body}
             />
+            <Link className="button button--solid" to="/contact">
+              {copy.hero.cta}
+              <ArrowIcon className="icon icon--arrow" />
+            </Link>
           </div>
 
           <blockquote className="quote-block">

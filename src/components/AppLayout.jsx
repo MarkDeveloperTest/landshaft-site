@@ -1,8 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { contactChannels, navItems, siteMeta } from "../content/siteContent";
-import { mountAnalyticsScript, trackPageView } from "../lib/analytics";
-import { CloseIcon, MenuIcon } from "./Icons";
+import {
+  contactChannels,
+  homeSections,
+  navItems,
+  siteMeta,
+} from "../content/siteContent";
+import {
+  mountAnalyticsScript,
+  trackOutboundLead,
+  trackPageView,
+} from "../lib/analytics";
+import { ArrowIcon, CloseIcon, MenuIcon } from "./Icons";
 
 function Brand() {
   return (
@@ -12,7 +21,16 @@ function Brand() {
 
 export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const menuButtonRef = useRef(null);
+  const mobileNavId = "site-mobile-navigation";
+
+  const focusMainContent = () => {
+    window.requestAnimationFrame(() => {
+      document.getElementById("main-content")?.focus();
+    });
+  };
 
   useEffect(() => {
     setMenuOpen(false);
@@ -29,8 +47,42 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
     return () => document.body.classList.remove("menu-open");
   }, [menuOpen]);
 
+  useEffect(() => {
+    const updateScrollState = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return undefined;
+    }
+
+    const closeOnEscape = (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#main-content" onClick={focusMainContent}>
+        Перейти до основного вмісту
+      </a>
+
       <div className="site-shell__backdrop" aria-hidden="true">
         <span className="site-shell__orb site-shell__orb--one" />
         <span className="site-shell__orb site-shell__orb--two" />
@@ -38,7 +90,11 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
         <span className="site-shell__grain" />
       </div>
 
-      <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
+      <header
+        className={`site-header${menuOpen ? " site-header--menu-open" : ""}${
+          isScrolled ? " site-header--scrolled" : ""
+        }`}
+      >
         <div className="site-header__inner shell">
           <Link className="brand-link" to="/" aria-label="Landshaft home">
             <Brand />
@@ -60,10 +116,19 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
               ))}
             </nav>
 
+            <div className="desktop-actions">
+              <Link className="button button--solid site-header__cta" to="/contact">
+                {homeSections.hero.primaryCta.label}
+                <ArrowIcon className="icon icon--arrow" />
+              </Link>
+            </div>
+
             <button
+              ref={menuButtonRef}
               type="button"
               className={`menu-button${menuOpen ? " is-active" : ""}`}
               aria-expanded={menuOpen}
+              aria-controls={mobileNavId}
               aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
               onClick={() => setMenuOpen((value) => !value)}
             >
@@ -77,7 +142,11 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
           </div>
         </div>
 
-        <div className={`mobile-nav${menuOpen ? " is-open" : ""}`}>
+        <div
+          id={mobileNavId}
+          className={`mobile-nav${menuOpen ? " is-open" : ""}`}
+          aria-hidden={menuOpen ? "false" : "true"}
+        >
           <div className="mobile-nav__scrim" aria-hidden="true" />
           <div className="shell">
             <div className="mobile-nav__inner">
@@ -96,12 +165,37 @@ export function AppLayout({ routeTransitionState = "idle", routeTransitionPath }
                 ))}
               </nav>
 
+              <div className="mobile-nav__actions">
+                <Link className="button button--solid" to="/contact">
+                  {homeSections.hero.primaryCta.label}
+                  <ArrowIcon className="icon icon--arrow" />
+                </Link>
+
+                <div className="mobile-nav__contact-list" aria-label="Швидкі контакти">
+                  {contactChannels.map((channel) => (
+                    <a
+                      key={channel.id}
+                      className="mobile-nav__contact"
+                      href={channel.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`${channel.label}: ${channel.handle}`}
+                      onClick={() => trackOutboundLead(channel.label)}
+                    >
+                      <span>{channel.label}</span>
+                      <strong>{channel.handle}</strong>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       <main
+        id="main-content"
+        tabIndex={-1}
         key={routeTransitionPath}
         className={`route-shell route-shell--${routeTransitionState}`}
       >

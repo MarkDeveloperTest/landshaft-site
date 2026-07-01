@@ -14,6 +14,9 @@ for (const route of routes) {
 test("primary desktop navigation works", async ({ page, isMobile }) => {
   test.skip(isMobile, "Desktop-only interaction");
   await page.goto("/");
+  await expect(
+    page.getByRole("banner").getByRole("link", { name: "Обговорити проєкт" }),
+  ).toBeVisible();
   await page
     .getByLabel("Основна навігація")
     .getByRole("link", { name: "Проєкти" })
@@ -29,11 +32,30 @@ test("primary desktop navigation works", async ({ page, isMobile }) => {
 test("mobile menu works", async ({ page, isMobile }) => {
   test.skip(!isMobile, "Mobile-only interaction");
   await page.goto("/");
-  await page.getByRole("button", { name: "Відкрити меню" }).click();
+  const menuButton = page.getByRole("button", { name: "Відкрити меню" });
+  await menuButton.click();
   const nav = page.getByLabel("Мобільна навігація");
+  const menuPanel = page.locator("#site-mobile-navigation");
   await expect(nav.getByRole("link", { name: "Послуги" })).toBeVisible();
+  await expect(menuPanel.getByRole("link", { name: "Обговорити проєкт" })).toBeVisible();
+  await expect(
+    menuPanel.getByRole("link", { name: /Instagram: @_green_garden_ua/i }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(nav).not.toBeVisible();
+  await expect(menuButton).toBeFocused();
+  await menuButton.click();
   await nav.getByRole("link", { name: "Процес" }).click();
   await expect(page).toHaveURL(/\/process$/);
+});
+
+test("skip link targets the main content region", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  const skipLink = page.getByRole("link", { name: "Перейти до основного вмісту" });
+  await expect(skipLink).toBeFocused();
+  await skipLink.press("Enter");
+  await expect(page.locator("#main-content")).toBeFocused();
 });
 
 test("Instagram and Telegram links are present on home and contact", async ({ page }) => {
