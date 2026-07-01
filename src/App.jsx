@@ -10,8 +10,8 @@ import { ProcessPage } from "./pages/ProcessPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { ServicesPage } from "./pages/ServicesPage";
 
-const ROUTE_EXIT_DURATION_MS = 280;
-const ROUTE_ENTER_DURATION_MS = 520;
+const ROUTE_EXIT_DURATION_MS = 180;
+const ROUTE_ENTER_DURATION_MS = 320;
 
 function App() {
   const location = useLocation();

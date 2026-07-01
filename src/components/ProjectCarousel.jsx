@@ -4,7 +4,7 @@ import { ArrowIcon } from "./Icons";
 import { ResponsiveImage } from "./ResponsiveImage";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const CAROUSEL_TRANSITION_MS = 780;
+const CAROUSEL_TRANSITION_MS = 620;
 
 export function ProjectCarousel({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,7 +13,7 @@ export function ProjectCarousel({ projects }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (projects.length <= 1) {
+    if (projects.length <= 1 || prefersReducedMotion) {
       return undefined;
     }
 
