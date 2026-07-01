@@ -103,7 +103,7 @@ export function ServicesPage() {
         image={siteMeta.uk.ogImage}
       />
 
-      <section className="page-intro shell">
+      <section className="page-intro page-intro--services shell">
         <Reveal className="service-page-hero section-frame section-frame--hero">
           <div className="service-page-hero__copy">
             <h1>Послуги</h1>
@@ -140,7 +140,7 @@ export function ServicesPage() {
         </Reveal>
       </section>
 
-      <section className="section shell">
+      <section className="section section--services-overview shell">
         <Reveal className="section-frame section-frame--compact">
           <SectionHeading
             title="Процес"
@@ -159,7 +159,7 @@ export function ServicesPage() {
         </Reveal>
       </section>
 
-      <section className="section shell">
+      <section className="section section--services-articles shell">
         <Reveal className="service-article-list section-frame">
           {services.map((service, index) => (
             <article
@@ -188,7 +188,7 @@ export function ServicesPage() {
         </Reveal>
       </section>
 
-      <section className="section shell">
+      <section className="section section--services-value shell">
         <Reveal className="split-layout split-layout--text-heavy section-frame">
           <SectionHeading
             title="Що отримує клієнт на виході."
@@ -221,7 +221,7 @@ export function ServicesPage() {
         </Reveal>
       </section>
 
-      <section className="section section--contact shell">
+      <section className="section section--contact section--services-contact shell">
         <Reveal className="inline-cta section-frame">
           <div>
             <h2>Якщо вже є ділянка або перший запит, можна переходити до розмови.</h2>
