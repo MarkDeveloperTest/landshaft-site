@@ -100,10 +100,7 @@ export function ProjectsPage() {
       <section className="section shell">
         <Reveal className="project-showcase section-frame">
           {projects.map((project, index) => (
-            <article
-              key={project.slug}
-              className={`project-showcase__item${index === 1 ? " is-offset" : ""}`}
-            >
+            <article key={project.slug} className="project-showcase__item">
               <ResponsiveImage
                 asset={project.media}
                 className="project-showcase__media"

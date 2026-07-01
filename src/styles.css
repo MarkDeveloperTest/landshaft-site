@@ -2975,19 +2975,7 @@ blockquote footer {
   .project-showcase__item {
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
     gap: 2.7rem;
-  }
-
-  .project-showcase__item.is-offset .project-showcase__media {
-    order: 2;
-  }
-
-  .project-showcase__item.is-offset .project-showcase__copy {
-    order: 1;
-    align-self: end;
-  }
-
-  .project-showcase__item.is-offset {
-    margin-left: 7%;
+    align-items: start;
   }
 
   .site-footer__inner {
